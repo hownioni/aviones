@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://c8ixks6irxc7k"]
+
+[ext_resource type="Script" uid="uid://dofo72pyk20m6" path="res://Menu/menu.gd" id="1_pbjm4"]
+[ext_resource type="Texture2D" uid="uid://c6uc5oxjedjlf" path="res://images/artistic-pixel_art-space-stars-872539.jpeg" id="2_svuvw"]
+[ext_resource type="Theme" uid="uid://25m8yd7qpmam" path="res://Menu/button_theme.tres" id="3_juveg"]
+[ext_resource type="FontFile" uid="uid://02xwp5g3wgo2" path="res://fonts/Minecraft.ttf" id="4_v6yed"]
+
+[node name="Menu" type="Control" unique_id=866391854]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pbjm4")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1117801226]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_svuvw")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1672546547]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.625
+offset_top = -56.0
+offset_right = 55.625
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_juveg")
+theme_override_constants/separation = 12
+
+[node name="solo_game" type="Button" parent="VBoxContainer" unique_id=1123529901]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_v6yed")
+theme_override_font_sizes/font_size = 10
+text = "1 jugador"
+
+[node name="Duo_game" type="Button" parent="VBoxContainer" unique_id=695698887]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "2 jugadores"
+
+[node name="ranking" type="Button" parent="VBoxContainer" unique_id=1805144231]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Ranking"
+
+[node name="salir" type="Button" parent="VBoxContainer" unique_id=1436727788]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Salir"
+
+[connection signal="pressed" from="VBoxContainer/solo_game" to="." method="_on_solo_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/Duo_game" to="." method="_on_duo_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/ranking" to="." method="_on_ranking_pressed"]
+[connection signal="pressed" from="VBoxContainer/salir" to="." method="_on_salir_pressed"]

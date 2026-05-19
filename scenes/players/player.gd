@@ -7,13 +7,13 @@ const SPEED = 200
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    animated_sprite_2d.play("default")
+	animated_sprite_2d.play("default")
 
 
 func _physics_process(delta: float) -> void:
-    var input_dir = Input.get_vector("move_left_%d" % player_id, "move_right_%d" % player_id, "move_up_%d" % player_id, "move_down_%d" % player_id)
+	var input_dir = Input.get_vector("move_left_%d" % player_id, "move_right_%d" % player_id, "move_up_%d" % player_id, "move_down_%d" % player_id)
 
-    if input_dir:
-        global_position += input_dir * SPEED * delta
+	if input_dir:
+		global_position += input_dir * SPEED * delta
 
-    global_position = global_position.round()
+	global_position = global_position.round()

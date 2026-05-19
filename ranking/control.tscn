@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://dbvuvdvdqwpda"]
+
+[ext_resource type="Script" uid="uid://ctkse0hqmu47p" path="res://ranking/ranking.gd" id="1_cn5da"]
+[ext_resource type="Texture2D" uid="uid://c6uc5oxjedjlf" path="res://images/artistic-pixel_art-space-stars-872539.jpeg" id="1_qxfu3"]
+[ext_resource type="FontFile" uid="uid://02xwp5g3wgo2" path="res://fonts/Minecraft.ttf" id="3_x5gfj"]
+[ext_resource type="Theme" uid="uid://25m8yd7qpmam" path="res://Menu/button_theme.tres" id="4_amtgq"]
+
+[node name="ranking" type="Control" unique_id=162036454]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cn5da")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1040529523]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_qxfu3")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=892155714]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -139.0
+offset_top = 10.0
+offset_right = -12.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=121715057]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_x5gfj")
+theme_override_font_sizes/font_size = 15
+text = "Top 10 Ranking"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextRanking" type="VBoxContainer" parent="." unique_id=609206366]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -3.0
+offset_right = 130.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1557424942]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -89.0
+offset_top = -30.0
+offset_right = -7.0
+offset_bottom = 3.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("4_amtgq")
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer2" unique_id=1758544833]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "REGRESAR"
+
+[connection signal="pressed" from="VBoxContainer2/Button" to="." method="_on_button_pressed"]

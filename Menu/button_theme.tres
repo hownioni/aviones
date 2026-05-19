@@ -1,0 +1,29 @@
+[gd_resource type="Theme" format=3 uid="uid://25m8yd7qpmam"]
+
+[ext_resource type="FontFile" uid="uid://02xwp5g3wgo2" path="res://fonts/Minecraft.ttf" id="1_elqs5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2637"]
+bg_color = Color(0.4745098, 0.6431373, 0.5882353, 0.72156864)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbqdx"]
+bg_color = Color(0.0002667134, 0.0048712716, 0.0030695363, 0.73333335)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elqs5"]
+bg_color = Color(0.47632056, 0.6420344, 0.5885407, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bcqnl"]
+bg_color = Color(0.4745098, 0.6431373, 0.5882353, 0.9529412)
+
+[resource]
+default_font = ExtResource("1_elqs5")
+default_font_size = 12
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_hover_color = Color(0.0018658506, 0.030895045, 0.026134424, 1)
+Button/constants/align_to_largest_stylebox = 9
+Button/constants/line_spacing = 0
+Button/styles/hover = SubResource("StyleBoxFlat_w2637")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_sbqdx")
+Button/styles/normal = SubResource("StyleBoxFlat_elqs5")
+Button/styles/pressed = SubResource("StyleBoxFlat_bcqnl")
+Label/constants/line_spacing = 15
+Label/font_sizes/font_size = 12

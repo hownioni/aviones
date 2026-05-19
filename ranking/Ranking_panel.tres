@@ -1,0 +1,18 @@
+[gd_resource type="Theme" format=3 uid="uid://c0c07o4u1oohr"]
+
+[ext_resource type="FontFile" uid="uid://02xwp5g3wgo2" path="res://fonts/Minecraft.ttf" id="1_cgn5x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88t58"]
+bg_color = Color(0.5018977, 0.6441198, 0.54543394, 0.9529412)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[resource]
+default_font = ExtResource("1_cgn5x")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/constants/line_spacing = 10
+Label/font_sizes/font_size = 12
+Label/fonts/font = ExtResource("1_cgn5x")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_88t58")
