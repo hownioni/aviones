@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ba0aicj7f7cvf"]
+
+[ext_resource type="Script" uid="uid://dsye3p0mokef8" path="res://scenes/enemies/enemy_spawner.gd" id="1_mjbfh"]
+[ext_resource type="PackedScene" uid="uid://dtawatj5o3m7d" path="res://scenes/enemies/enemy_basic.tscn" id="2_531ly"]
+[ext_resource type="PackedScene" uid="uid://dupqbg6eec4nu" path="res://scenes/enemies/enemy_shot.tscn" id="3_gdiwb"]
+[ext_resource type="PackedScene" uid="uid://0615o6hanqox" path="res://scenes/enemies/enemy_wave.tscn" id="4_lgub2"]
+
+[node name="EnemySpawner" type="Node2D" unique_id=1146066596]
+script = ExtResource("1_mjbfh")
+enemy_scenes = Array[PackedScene]([ExtResource("2_531ly"), ExtResource("3_gdiwb"), ExtResource("4_lgub2")])

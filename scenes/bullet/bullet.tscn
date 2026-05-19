@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://davbhc3hgpr10"]
+
+[ext_resource type="Script" uid="uid://msq5t682onrk" path="res://scenes/bullet/bullet.gd" id="1_v7oki"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v8qja"]
+radius = 1.0
+
+[node name="bullet" type="Area2D" unique_id=615547401]
+script = ExtResource("1_v7oki")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1225803578]
+shape = SubResource("CircleShape2D_v8qja")
