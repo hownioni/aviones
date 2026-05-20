@@ -1,15 +1,23 @@
 [gd_scene format=3 uid="uid://bg6ny06w6w2ts"]
 
-[ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_fcftc"]
+[ext_resource type="Script" uid="uid://buu1tyk5xn316" path="res://scenes/enemies/enemy.gd" id="1_fcftc"]
 [ext_resource type="Script" uid="uid://dw00bvm4mv3pi" path="res://scripts/components/movement_component.gd" id="2_38ino"]
 [ext_resource type="Script" uid="uid://cbvsh7bm3aqxo" path="res://scripts/components/shooting_component.gd" id="3_38ino"]
 [ext_resource type="PackedScene" uid="uid://davbhc3hgpr10" path="res://scenes/bullet/bullet.tscn" id="4_fcftc"]
+[ext_resource type="Script" uid="uid://devp2xaf52bep" path="res://scripts/components/animation_component.gd" id="5_lu5c6"]
+[ext_resource type="Script" uid="uid://dkwb2cxak4wyf" path="res://scripts/components/offscreen_component.gd" id="6_nb6gf"]
+[ext_resource type="Script" uid="uid://drv3j4nslxmvq" path="res://scripts/components/health_component.gd" id="7_jt03m"]
 
 [node name="Enemy" type="Area2D" unique_id=2023772731]
+collision_layer = 2
 script = ExtResource("1_fcftc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=537091965]
 debug_color = Color(0.3634998, 0.5740897, 0.6270286, 0.41960785)
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=413915602]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1556949439]
 
 [node name="MovementComponent" type="Node" parent="." unique_id=99876411 node_paths=PackedStringArray("body")]
 unique_name_in_owner = true
@@ -23,6 +31,18 @@ script = ExtResource("3_38ino")
 bullet_scene = ExtResource("4_fcftc")
 metadata/_custom_type_script = "uid://cbvsh7bm3aqxo"
 
-[node name="ShootTimer" type="Timer" parent="." unique_id=413915602]
+[node name="AnimationComponent" type="Node" parent="." unique_id=2119753817 node_paths=PackedStringArray("animated_sprite")]
+unique_name_in_owner = true
+script = ExtResource("5_lu5c6")
+animated_sprite = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://devp2xaf52bep"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1556949439]
+[node name="OffscreenComponent" type="Node" parent="." unique_id=2141730915]
+unique_name_in_owner = true
+script = ExtResource("6_nb6gf")
+metadata/_custom_type_script = "uid://dkwb2cxak4wyf"
+
+[node name="HealthComponent" type="Node" parent="." unique_id=76224141]
+unique_name_in_owner = true
+script = ExtResource("7_jt03m")
+metadata/_custom_type_script = "uid://drv3j4nslxmvq"

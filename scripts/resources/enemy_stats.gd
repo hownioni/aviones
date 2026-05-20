@@ -5,6 +5,11 @@ class_name EnemyStats extends Resource
 @export var movement_type: MovementType = MovementType.STRAIGHT
 @export var wave_frequency: float = 4.0
 
+@export_category("Combat")
+@export var health := 1
+@export var points_awarded := 75
+@export var damage: int = 1
+
 @export_category("Shooting")
 @export var shooting_type: ShootingType = ShootingType.NONE
 @export var shoot_delay: float = 1.0
