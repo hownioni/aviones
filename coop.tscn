@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ba0aicj7f7cvf" path="res://scenes/enemies/enemy_spawner.tscn" id="2_3li14"]
 [ext_resource type="PackedScene" uid="uid://ss04g3ndr6jo" path="res://scenes/menus/overlay/pause/pause.tscn" id="3_3li14"]
 
-[node name="Node2D" type="Node2D" unique_id=1288925967]
+[node name="CoopMain" type="Node2D" unique_id=1288925967]
 
 [node name="Main" parent="." unique_id=1084674358 instance=ExtResource("1_h0anw")]
 

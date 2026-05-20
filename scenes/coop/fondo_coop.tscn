@@ -24,7 +24,7 @@ grow_vertical = 2
 texture = ExtResource("1_teb77")
 expand_mode = 1
 
-[node name="Node2D" parent="." unique_id=1288925967 instance=ExtResource("2_gr5xo")]
+[node name="CoopMain" parent="." unique_id=1288925967 instance=ExtResource("2_gr5xo")]
 
 [node name="jugador1" type="Label" parent="." unique_id=1911431323]
 layout_mode = 0
