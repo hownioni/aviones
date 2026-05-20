@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dupqbg6eec4nu"]
+
+[ext_resource type="Script" uid="uid://dij0of0sre5yx" path="res://scenes/enemies/enemy_shot.gd" id="1_v856w"]
+[ext_resource type="PackedScene" uid="uid://davbhc3hgpr10" path="res://scenes/bullet/bullet.tscn" id="2_yt14h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7k104"]
+radius = 5.0
+
+[node name="enemy_shot" type="Area2D" unique_id=2023772731]
+script = ExtResource("1_v856w")
+bullet_scene = ExtResource("2_yt14h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=537091965]
+shape = SubResource("CircleShape2D_7k104")
+debug_color = Color(0.3634998, 0.5740897, 0.6270286, 0.41960785)
