@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dkwb2cxak4wyf" path="res://scripts/components/offscreen_component.gd" id="6_nb6gf"]
 [ext_resource type="Script" uid="uid://drv3j4nslxmvq" path="res://scripts/components/health_component.gd" id="7_jt03m"]
 [ext_resource type="Script" uid="uid://b2l8v08y0k2nl" path="res://scripts/components/hurt_component.gd" id="8_n7575"]
+[ext_resource type="Script" uid="uid://dhj1wgqym1oun" path="res://scripts/components/vfx_component.gd" id="9_qch6t"]
 
 [node name="Enemy" type="Area2D" unique_id=2023772731]
 collision_layer = 2
@@ -53,3 +54,9 @@ metadata/_custom_type_script = "uid://drv3j4nslxmvq"
 unique_name_in_owner = true
 script = ExtResource("8_n7575")
 metadata/_custom_type_script = "uid://b2l8v08y0k2nl"
+
+[node name="VfxComponent" type="Node" parent="." unique_id=1915965696 node_paths=PackedStringArray("target")]
+unique_name_in_owner = true
+script = ExtResource("9_qch6t")
+target = NodePath("../AnimatedSprite2D")
+metadata/_custom_type_script = "uid://dhj1wgqym1oun"

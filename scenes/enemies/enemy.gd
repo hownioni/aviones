@@ -10,21 +10,24 @@ class_name Enemy extends Area2D
 @onready var shooting_component: ShootingComponent = %ShootingComponent
 @onready var animation_component: AnimationComponent = %AnimationComponent
 @onready var hurt_component: HurtComponent = %HurtComponent
+@onready var health_component: HealthComponent = %HealthComponent
+@onready var vfx_component: VfxComponent = %VfxComponent
 
 var _wave_time: float = 0.0
-var _current_health: int
 
 func _ready():
     if not stats:
         _enable_debug_mode()
         return
 
-    _current_health = stats.health
-
     _setup_visuals()
     _setup_collision()
 
     movement_component.speed = stats.speed
+    health_component.max_health = stats.health
+    health_component.current_health = stats.health
+    health_component.died.connect(_on_died)
+    health_component.damaged.connect(_on_damaged)
 
     area_entered.connect(_on_area_entered)
 
@@ -38,14 +41,7 @@ func get_team() -> Team.Type:
     return Team.Type.ENEMY
 
 func take_damage(amount: int) -> void:
-    _current_health -= amount
-
-    animation_component.animated_sprite.modulate = Color.RED
-    await get_tree().create_timer(0.1).timeout
-    animation_component.animated_sprite.modulate = Color.WHITE
-
-    if _current_health <= 0:
-        _die()
+    health_component.take_damage(amount)
 
 func _setup_visuals():
     if stats.sprite_frames:
@@ -143,13 +139,20 @@ func _shoot_burst():
         shooting_component.bullet_direction = direction
         shooting_component.shoot(self, stats.bullet_spawn_offset)
 
-func _die():
+func _on_died():
     GameManager.add_score(stats.points_awarded)
     GameManager.add_enemy_kill()
-    print(GameManager.current_score)
-
     shoot_timer.stop()
+    collision_shape_2d.disabled = true
+    set_physics_process(false)
+
+    # Optional: play death animation or particle effect here
+    await get_tree().create_timer(0.2).timeout
+
     queue_free()
+
+func _on_damaged(_new_hp: int, _max_hp: int):
+    vfx_component.flash()
 
 func _draw():
     if not stats or stats.sprite_frames:
