@@ -45,6 +45,6 @@ speed = 80.0
 health = 2
 points_awarded = 100
 shooting_type = 1
-sprite_frames = SubResource("SpriteFrames_3gwqr")
 bullet_spawn_offset = Vector2(0, 14)
+sprite_frames = SubResource("SpriteFrames_3gwqr")
 metadata/_custom_type_script = "uid://dksuhfj06rm3i"

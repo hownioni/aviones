@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FormationStats" format=3 uid="uid://b6jw71176hpgl"]
+
+[ext_resource type="PackedScene" uid="uid://bg6ny06w6w2ts" path="res://scenes/enemies/enemy.tscn" id="1_ne2h1"]
+[ext_resource type="Resource" uid="uid://c15cwwu320m1e" path="res://resources/enemies/cow_basic.tres" id="2_gtgn3"]
+[ext_resource type="Script" uid="uid://b5xwkvdghyyvy" path="res://scripts/resources/formation_stats.gd" id="3_tcs77"]
+
+[resource]
+script = ExtResource("3_tcs77")
+formation_shape = 3
+spacing = 20.0
+rotation_speed = 50.0
+enemy_scene = ExtResource("1_ne2h1")
+enemy_stats = ExtResource("2_gtgn3")
+metadata/_custom_type_script = "uid://b5xwkvdghyyvy"
