@@ -1,19 +1,24 @@
-extends Area2D
+class_name Player extends Area2D
 
 @export var player_id: int
 
-const SPEED = 200
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
+@onready var input_component: InputComponent = %InputComponent
+@onready var movement_component: MovementComponent = %MovementComponent
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	animated_sprite_2d.play("default")
+    animated_sprite_2d.play("default")
+    input_component.player_id = player_id
 
 
 func _physics_process(delta: float) -> void:
-	var input_dir = Input.get_vector("move_left_%d" % player_id, "move_right_%d" % player_id, "move_up_%d" % player_id, "move_down_%d" % player_id)
+    # Read input
+    input_component.update()
 
-	if input_dir:
-		global_position += input_dir * SPEED * delta
+    movement_component.direction = input_component.move_dir
+    movement_component.tick(delta)
 
-	global_position = global_position.round()
+
+    global_position = global_position.round()

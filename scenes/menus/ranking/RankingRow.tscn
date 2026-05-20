@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://vnmlvu8gb8r8"]
 
-[ext_resource type="Script" uid="uid://dcxl385evhfgw" path="res://ranking/ranking_row.gd" id="1_2al1x"]
-[ext_resource type="Theme" uid="uid://c0c07o4u1oohr" path="res://ranking/Ranking_panel.tres" id="1_frqpw"]
+[ext_resource type="Script" uid="uid://dcxl385evhfgw" path="res://scenes/menus/ranking/ranking_row.gd" id="1_2al1x"]
+[ext_resource type="Theme" uid="uid://c0c07o4u1oohr" path="res://scenes/menus/ranking/Ranking_panel.tres" id="1_frqpw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxhqv"]
 bg_color = Color(0.47632056, 0.6420344, 0.5885407, 1)
