@@ -25,12 +25,12 @@ class_name EnemyStats extends Resource
 @export_range(-360, 360, 1.0, "radians_as_degrees") var collision_rotation: float = 0.0
 
 enum MovementType {
-    STRAIGHT,
-    WAVE
+	STRAIGHT,
+	WAVE
 }
 
 enum ShootingType {
-    NONE,
-    SINGLE_SHOT,
-    BURST
+	NONE,
+	SINGLE_SHOT,
+	BURST
 }
