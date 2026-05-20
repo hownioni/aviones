@@ -1,6 +1,7 @@
 class_name ShootingComponent extends Node
 
 @export var bullet_scene: PackedScene
+@export var bullet_speed: float = 150
 var bullet_direction := Vector2.ZERO
 
 func shoot(body: Node2D, spawn_offset: Vector2 = Vector2.ZERO) -> void:
@@ -11,6 +12,7 @@ func shoot(body: Node2D, spawn_offset: Vector2 = Vector2.ZERO) -> void:
     bullet.global_position = body.global_position + spawn_offset
     bullet.direction = bullet_direction
     bullet.shooter = body
+    bullet.speed = bullet_speed
 
      # Set team based on shooter
     if body is Player:

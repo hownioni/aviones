@@ -25,6 +25,7 @@ health = 2
 points_awarded = 150
 shooting_type = 2
 burst_count = 5
+bullet_spawn_offset = Vector2(-16, 0)
 sprite_frames = SubResource("SpriteFrames_orc8u")
 collision_shape = SubResource("CapsuleShape2D_sp4ii")
 collision_rotation = 1.5707963267948966
