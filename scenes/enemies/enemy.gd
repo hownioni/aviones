@@ -13,9 +13,9 @@ class_name Enemy extends Area2D
 var _wave_time: float = 0.0
 
 func _ready():
-	if not stats:
-		_enable_debug_mode()
-		return
+    if not stats:
+        _enable_debug_mode()
+        return
 
     _setup_visuals()
     _setup_collision()
@@ -70,13 +70,13 @@ func _setup_collision():
         collision_shape_2d.shape = circle_shape
 
 func _physics_process(delta: float):
-	if not stats:
-		return
+    if not stats:
+        return
 
-	# Movement only - shooting handled by timer
-	match stats.movement_type:
-		EnemyStats.MovementType.STRAIGHT:
-			movement_component.direction = Vector2.LEFT
+    # Movement only - shooting handled by timer
+    match stats.movement_type:
+        EnemyStats.MovementType.STRAIGHT:
+            movement_component.direction = Vector2.LEFT
 
         EnemyStats.MovementType.WAVE:
             _wave_time += delta
@@ -84,46 +84,46 @@ func _physics_process(delta: float):
             wave_direction.y = sin(_wave_time * stats.wave_frequency)
             movement_component.direction = wave_direction
 
-	movement_component.tick(delta)
+    movement_component.tick(delta)
 
-	# Off-screen removal
-	if position.x < -50:
-		queue_free()
+    # Off-screen removal
+    if position.x < -50:
+        queue_free()
 
-	# Clamp wave enemies
-	if stats.movement_type == EnemyStats.MovementType.WAVE:
-		var viewport = get_viewport_rect()
-		position.y = clamp(position.y, 20, viewport.size.y - 20)
+    # Clamp wave enemies
+    if stats.movement_type == EnemyStats.MovementType.WAVE:
+        var viewport = get_viewport_rect()
+        position.y = clamp(position.y, 20, viewport.size.y - 20)
 
 func _on_shoot_timer_timeout():
-	match stats.shooting_type:
-		EnemyStats.ShootingType.SINGLE_SHOT:
-			_shoot_single()
-		EnemyStats.ShootingType.BURST:
-			_shoot_burst()
+    match stats.shooting_type:
+        EnemyStats.ShootingType.SINGLE_SHOT:
+            _shoot_single()
+        EnemyStats.ShootingType.BURST:
+            _shoot_burst()
 
 func _shoot_single():
-	shooting_component.bullet_direction = stats.bullet_direction
-	shooting_component.shoot(self, stats.bullet_spawn_offset)
+    shooting_component.bullet_direction = stats.bullet_direction
+    shooting_component.shoot(self, stats.bullet_spawn_offset)
 
 func _shoot_burst():
-	if stats.burst_count <= 1:
-		_shoot_single()
-		return
+    if stats.burst_count <= 1:
+        _shoot_single()
+        return
 
-	var angle_step = stats.burst_spread / (stats.burst_count - 1)
-	var start_angle = -stats.burst_spread / 2
+    var angle_step = stats.burst_spread / (stats.burst_count - 1)
+    var start_angle = -stats.burst_spread / 2
 
-	for i in range(stats.burst_count):
-		var angle_deg = start_angle + (angle_step * i)
-		var direction = stats.bullet_direction.rotated(deg_to_rad(angle_deg))
-		shooting_component.bullet_direction = direction
-		shooting_component.shoot(self)
+    for i in range(stats.burst_count):
+        var angle_deg = start_angle + (angle_step * i)
+        var direction = stats.bullet_direction.rotated(deg_to_rad(angle_deg))
+        shooting_component.bullet_direction = direction
+        shooting_component.shoot(self, stats.bullet_spawn_offset)
 
 # Optional: Stop shooting when enemy dies
 func die():
-	shoot_timer.stop()
-	queue_free()
+    shoot_timer.stop()
+    queue_free()
 
 func _draw():
     if not stats or stats.sprite_frames:
