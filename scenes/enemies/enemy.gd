@@ -1,11 +1,14 @@
-# enemy.gd
 class_name Enemy extends Area2D
 
 @export var stats: EnemyStats
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var shoot_timer: Timer = $ShootTimer
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+
+# Components
 @onready var movement_component: MovementComponent = %MovementComponent
 @onready var shooting_component: ShootingComponent = %ShootingComponent
-@onready var shoot_timer: Timer = $ShootTimer
 
 var _wave_time: float = 0.0
 
@@ -14,15 +17,51 @@ func _ready():
         _enable_debug_mode()
         return
 
+    _setup_visuals()
+    _setup_collision()
+
     movement_component.speed = stats.speed
 
-    # Setup shooting timer
+    # Setup shooting
     if stats.shooting_type != EnemyStats.ShootingType.NONE:
         shoot_timer.wait_time = stats.shoot_delay
         shoot_timer.timeout.connect(_on_shoot_timer_timeout)
         shoot_timer.start()
 
-    queue_redraw()
+func _setup_visuals():
+    if stats.sprite_frames:
+        animated_sprite_2d.sprite_frames = stats.sprite_frames
+        animated_sprite_2d.animation = stats.default_animation
+        animated_sprite_2d.scale = stats.sprite_scale
+        animated_sprite_2d.offset = stats.sprite_offset
+
+        # Play animation if it has multiple frames and speed > 0
+        var animation_speed := stats.sprite_frames.get_animation_speed(stats.default_animation)
+        if animation_speed > 0:
+            animated_sprite_2d.play()
+        animated_sprite_2d.visible = true
+    else:
+        animated_sprite_2d.visible = false
+        queue_redraw()
+
+func _setup_collision():
+    if stats.collision_shape:
+        # Use custom shape from resource
+        collision_shape_2d.shape = stats.collision_shape
+    elif stats.sprite_frames:
+        # Auto-calculate from first frame of animation
+        var first_frame = stats.sprite_frames.get_frame_texture(stats.default_animation, 0)
+        if first_frame:
+            var sprite_size = first_frame.get_size() * stats.sprite_scale
+            var radius = min(sprite_size.x, sprite_size.y)
+            var circle_shape = CircleShape2D.new()
+            circle_shape.radius = radius
+            collision_shape_2d.shape = circle_shape
+    else:
+        # Fallback to radius from stats
+        var circle_shape = CircleShape2D.new()
+        circle_shape.radius = stats.collision_radius
+        collision_shape_2d.shape = circle_shape
 
 func _physics_process(delta: float):
     if not stats:
@@ -36,8 +75,8 @@ func _physics_process(delta: float):
         EnemyStats.MovementType.WAVE:
             _wave_time += delta
             var wave_direction = Vector2.LEFT
-            wave_direction.y = sin(_wave_time * stats.wave_frequency) * (stats.wave_amplitude / stats.speed)
-            movement_component.direction = wave_direction.normalized()
+            wave_direction.y = sin(_wave_time * stats.wave_frequency)
+            movement_component.direction = wave_direction
 
     movement_component.tick(delta)
 
@@ -81,32 +120,13 @@ func die():
     queue_free()
 
 func _draw():
-    if not stats:
-        draw_circle(Vector2.ZERO, 5, Color.WHITE)
-        return
+    if not stats or stats.sprite_frames:
+        return  # Don't draw if we have a sprite
 
-    # Main body
-    draw_circle(Vector2.ZERO, stats.radius, stats.color)
-
-    # Weapon indicators for visual feedback
-    if stats.show_weapon_indicators:
-        match stats.shooting_type:
-            EnemyStats.ShootingType.NONE:
-                # No weapons
-                pass
-            EnemyStats.ShootingType.SINGLE_SHOT:
-                # Single barrel
-                draw_line(Vector2.ZERO, Vector2(-8, 0), Color.YELLOW, 1.5)
-            EnemyStats.ShootingType.BURST:
-                # Multiple barrels
-                for i in range(stats.burst_count):
-                    var angle = deg_to_rad(-stats.burst_spread/2 + (i * stats.burst_spread/(stats.burst_count-1)))
-                    var tip = Vector2(-8, 0).rotated(angle)
-                    draw_line(Vector2.ZERO, tip, Color.ORANGE, 1)
+    # Fallback drawing for debug
+    draw_circle(Vector2.ZERO, stats.collision_radius, Color.RED)
+    draw_circle(Vector2.ZERO, stats.collision_radius - 1, Color.DARK_RED)
 
 func _enable_debug_mode():
-    # Fallback if no stats assigned
     stats = EnemyStats.new()
-    stats.color = Color.WHITE
-    stats.radius = 5
     print("Warning: Enemy has no stats assigned - using defaults")

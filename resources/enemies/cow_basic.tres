@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://c15cwwu320m1e"]
+
+[ext_resource type="Script" uid="uid://dksuhfj06rm3i" path="res://scripts/resources/enemy_stats.gd" id="1_6l6fd"]
+[ext_resource type="Texture2D" uid="uid://b36kj77cn6jo6" path="res://assets/sprites/enemies/vaca_esfera.png" id="2_jqeog"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jqeog"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jqeog")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_6l6fd")
+sprite_frames = SubResource("SpriteFrames_jqeog")
+metadata/_custom_type_script = "uid://dksuhfj06rm3i"

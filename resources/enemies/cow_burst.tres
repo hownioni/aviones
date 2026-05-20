@@ -4,9 +4,8 @@
 
 [resource]
 script = ExtResource("1_nfmpv")
-speed = 60.0
+speed = 70.0
 movement_type = 1
-wave_amplitude = 20.0
 shooting_type = 2
 burst_count = 5
 color = Color(0.6, 0.2, 0.8, 1)
