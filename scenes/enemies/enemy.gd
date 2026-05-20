@@ -143,7 +143,7 @@ func _on_died():
     GameManager.add_score(stats.points_awarded)
     GameManager.add_enemy_kill()
     shoot_timer.stop()
-    collision_shape_2d.disabled = true
+    collision_shape_2d.set_deferred("disabled", true)
     set_physics_process(false)
 
     # Optional: play death animation or particle effect here

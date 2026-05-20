@@ -6,8 +6,13 @@
 [ext_resource type="Resource" uid="uid://c15cwwu320m1e" path="res://resources/enemies/cow_basic.tres" id="4_gnd13"]
 [ext_resource type="Resource" uid="uid://dvn0bqwcmg01v" path="res://resources/enemies/cow_burst.tres" id="5_sslve"]
 [ext_resource type="Resource" uid="uid://birabjgydatx4" path="res://resources/enemies/cow_shooter.tres" id="6_akt16"]
+[ext_resource type="PackedScene" uid="uid://d22u0lys2i662" path="res://scenes/enemies/formation.tscn" id="7_gnd13"]
+[ext_resource type="Script" uid="uid://b5xwkvdghyyvy" path="res://scripts/resources/formation_stats.gd" id="8_akt16"]
+[ext_resource type="Resource" uid="uid://b6jw71176hpgl" path="res://resources/enemies/formations/circle.tres" id="9_6ndy4"]
 
 [node name="EnemySpawner" type="Node2D" unique_id=1146066596]
 script = ExtResource("1_mjbfh")
 enemy_scene = ExtResource("2_63aup")
 enemy_types = Array[ExtResource("3_63aup")]([ExtResource("4_gnd13"), ExtResource("5_sslve"), ExtResource("6_akt16")])
+formation_scene = ExtResource("7_gnd13")
+formation_types = Array[ExtResource("8_akt16")]([ExtResource("9_6ndy4")])

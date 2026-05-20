@@ -2,6 +2,9 @@ extends Node2D
 
 @export var enemy_scene: PackedScene
 @export var enemy_types: Array[EnemyStats]
+@export var formation_scene: PackedScene
+@export var use_formations: bool = true
+@export var formation_chance: float = 0.3
 
 var difficulty := "easy"
 
@@ -11,11 +14,26 @@ func _ready():
 
 func start_spawn_loop():
     while true:
-        spawn_enemy()
+        if use_formations and randf() < formation_chance:
+            spawn_formation()
+        else:
+            spawn_single_enemy()
+
         var wait_time = get_spawn_time()
         await get_tree().create_timer(wait_time).timeout
 
-func spawn_enemy():
+@export var formation_types: Array[FormationStats]   # List of possible formations
+
+func spawn_formation():
+    var formation_stats = formation_types.pick_random()
+    var formation: Formation = formation_scene.instantiate()
+    formation.formation_stats = formation_stats
+    # Position formation at right edge
+    var screen_size = get_viewport_rect().size
+    formation.global_position = Vector2(screen_size.x + 50, randf_range(80, screen_size.y - 80))
+    add_child(formation)
+
+func spawn_single_enemy():
     if not enemy_scene or enemy_types.is_empty():
         return
 

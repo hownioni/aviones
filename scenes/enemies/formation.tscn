@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d22u0lys2i662"]
+
+[ext_resource type="Script" uid="uid://bcwn1a1bovi0g" path="res://scenes/enemies/formation.gd" id="1_euy2o"]
+
+[node name="Formation" type="Node2D" unique_id=1793717164]
+script = ExtResource("1_euy2o")
