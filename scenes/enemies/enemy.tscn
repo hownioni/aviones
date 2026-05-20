@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dtawatj5o3m7d"]
+[gd_scene format=3 uid="uid://bg6ny06w6w2ts"]
 
-[ext_resource type="Script" uid="uid://buu1tyk5xn316" path="res://scenes/enemies/enemy.gd" id="1_8e3ao"]
+[ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_fcftc"]
 [ext_resource type="Script" uid="uid://dw00bvm4mv3pi" path="res://scripts/components/movement_component.gd" id="2_38ino"]
 [ext_resource type="Script" uid="uid://cbvsh7bm3aqxo" path="res://scripts/components/shooting_component.gd" id="3_38ino"]
 [ext_resource type="PackedScene" uid="uid://davbhc3hgpr10" path="res://scenes/bullet/bullet.tscn" id="4_fcftc"]
@@ -9,7 +9,7 @@
 radius = 5.0
 
 [node name="Enemy" type="Area2D" unique_id=2023772731]
-script = ExtResource("1_8e3ao")
+script = ExtResource("1_fcftc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=537091965]
 shape = SubResource("CircleShape2D_7k104")
