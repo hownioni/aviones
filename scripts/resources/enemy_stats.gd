@@ -5,6 +5,11 @@ class_name EnemyStats extends Resource
 @export var movement_type: MovementType = MovementType.STRAIGHT
 @export var wave_frequency: float = 4.0
 
+@export_category("Combat")
+@export var health := 1
+@export var points_awarded := 75
+@export var damage: int = 1
+
 @export_category("Shooting")
 @export var shooting_type: ShootingType = ShootingType.NONE
 @export var shoot_delay: float = 1.0
@@ -25,12 +30,12 @@ class_name EnemyStats extends Resource
 @export_range(-360, 360, 1.0, "radians_as_degrees") var collision_rotation: float = 0.0
 
 enum MovementType {
-	STRAIGHT,
-	WAVE
+    STRAIGHT,
+    WAVE
 }
 
 enum ShootingType {
-	NONE,
-	SINGLE_SHOT,
-	BURST
+    NONE,
+    SINGLE_SHOT,
+    BURST
 }

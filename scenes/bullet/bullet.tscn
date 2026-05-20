@@ -1,12 +1,20 @@
 [gd_scene format=3 uid="uid://davbhc3hgpr10"]
 
 [ext_resource type="Script" uid="uid://msq5t682onrk" path="res://scenes/bullet/bullet.gd" id="1_v7oki"]
+[ext_resource type="Script" uid="uid://dkwb2cxak4wyf" path="res://scripts/components/offscreen_component.gd" id="3_0vdx3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v8qja"]
 radius = 1.0
 
-[node name="bullet" type="Area2D" unique_id=615547401]
+[node name="Bullet" type="Area2D" unique_id=615547401]
+collision_layer = 0
+collision_mask = 3
 script = ExtResource("1_v7oki")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1225803578]
 shape = SubResource("CircleShape2D_v8qja")
+
+[node name="OffscreenComponent" type="Node" parent="." unique_id=794897451]
+unique_name_in_owner = true
+script = ExtResource("3_0vdx3")
+metadata/_custom_type_script = "uid://dkwb2cxak4wyf"

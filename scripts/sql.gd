@@ -1,6 +1,6 @@
 extends Control
 
-var database : SQLite 
+var database : SQLite
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	database = SQLite.new()
@@ -16,13 +16,13 @@ func crear_tablas():
 	score INTEGER
 		);
 	")
-	
+
 func insertar_score(nombre, score):
 	database.query("
     INSERT INTO ranking(nombre, score)
     VALUES('%s', %d);
 	" % [nombre, score])
-	
+
 func obtener_top_10():
 	database.query("
     SELECT nombre, score

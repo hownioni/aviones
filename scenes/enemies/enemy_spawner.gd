@@ -3,7 +3,7 @@ extends Node2D
 @export var enemy_scene: PackedScene
 @export var enemy_types: Array[EnemyStats]
 
-var difficulty := "hard"
+var difficulty := "easy"
 
 func _ready():
 	randomize()

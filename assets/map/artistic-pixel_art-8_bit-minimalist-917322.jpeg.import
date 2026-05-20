@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcqil2hh8m7ci"
-path="res://.godot/imported/vaca_nave.png-f47de74ce79c2afc5078b80c2f7d06f4.ctex"
+uid="uid://c8465tqeieoeu"
+path="res://.godot/imported/artistic-pixel_art-8_bit-minimalist-917322.jpeg-cfefbfcb9c1adc62dde7b74334a65cba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemies/vaca_nave.png"
-dest_files=["res://.godot/imported/vaca_nave.png-f47de74ce79c2afc5078b80c2f7d06f4.ctex"]
+source_file="res://assets/map/artistic-pixel_art-8_bit-minimalist-917322.jpeg"
+dest_files=["res://.godot/imported/artistic-pixel_art-8_bit-minimalist-917322.jpeg-cfefbfcb9c1adc62dde7b74334a65cba.ctex"]
 
 [params]
 

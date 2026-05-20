@@ -13,7 +13,7 @@ func cargar_ranking():
 	# Limpiar filas anteriores
 	for child in container.get_children():
 		child.queue_free()
-	var resultados = sql.obtener_top_10()
+	var resultados = Sql.obtener_top_10()
 	var posicion = 1
 
 	for fila in resultados:
