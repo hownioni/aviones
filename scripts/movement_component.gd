@@ -7,8 +7,8 @@ class_name MovementComponent extends Node
 var direction := Vector2.ZERO
 
 func tick(delta: float) -> void:
-    if body == null:
-        return
+	if body == null:
+		return
 
-    if direction:
-        body.global_position += direction * speed * delta
+	if direction:
+		body.global_position += direction * speed * delta
