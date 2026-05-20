@@ -38,6 +38,7 @@ func _spawn_formation():
 
         enemy.stats = enemy_stats
         enemy.position = positions[i]
+        enemy.can_move = false
         add_child(enemy)
         members.append(enemy)
         original_offsets.append(positions[i])
@@ -45,6 +46,21 @@ func _spawn_formation():
         enemy.health_component.died.connect(_on_member_died)
 
     leader = members[0] if members.size() > 0 else null
+    _center_formation()
+
+func _center_formation():
+    if members.is_empty():
+        return
+    # Compute centroid of all enemy local positions
+    var centroid := Vector2.ZERO
+    for enemy in members:
+        centroid += enemy.position
+    centroid /= members.size()
+
+    # Shift formation so that centroid becomes the new origin
+    global_position += centroid
+    for enemy in members:
+        enemy.position -= centroid
 
 func _apply_variance(enemy_stats: EnemyStats, index: int):
     var stats = formation_stats
@@ -84,8 +100,13 @@ func _calculate_positions() -> Array[Vector2]:
     return positions
 
 func _process(delta):
-    var stats = formation_stats
-    global_position += stats.move_direction * stats.move_speed * delta
+    global_position += formation_stats.move_direction * formation_stats.move_speed * delta
+    if formation_stats.rotation_speed != 0:
+        rotation += deg_to_rad(formation_stats.rotation_speed) * delta
+
+        for enemy in members:
+            if is_instance_valid(enemy):
+                enemy.rotation = -rotation
 
 func _on_member_died():
     members = members.filter(func(m): return is_instance_valid(m) and not m.is_queued_for_deletion())
@@ -98,5 +119,6 @@ func _on_leader_died():
     for enemy in members:
         enemy.get_parent().remove_child(enemy)
         get_parent().add_child(enemy)
+        enemy.can_move = true
         enemy.movement_component.direction = Vector2.LEFT
     queue_free()

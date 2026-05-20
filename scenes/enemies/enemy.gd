@@ -14,6 +14,7 @@ class_name Enemy extends Area2D
 @onready var vfx_component: VfxComponent = %VfxComponent
 
 var _wave_time: float = 0.0
+var can_move := true
 
 func _ready():
     if not stats:
@@ -94,6 +95,9 @@ func _setup_collision():
 
 func _physics_process(delta: float):
     if not stats:
+        return
+
+    if not can_move:
         return
 
     # Movement only - shooting handled by timer

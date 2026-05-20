@@ -48,6 +48,7 @@ metadata/_custom_type_script = "uid://dkwb2cxak4wyf"
 [node name="HealthComponent" type="Node" parent="." unique_id=76224141]
 unique_name_in_owner = true
 script = ExtResource("7_jt03m")
+invincible_duration = 0.1
 metadata/_custom_type_script = "uid://drv3j4nslxmvq"
 
 [node name="HurtComponent" type="Node" parent="." unique_id=1132381214]
