@@ -16,7 +16,7 @@ func _on_solo_game_pressed() -> void:
 	pass # Replace with function body.
 
 func _on_duo_game_pressed() -> void:
-	get_tree().change_scene_to_file("res://coop.tscn")
+	get_tree().change_scene_to_file("res://scenes/coop/fondo_coop.tscn")
 
 func _on_ranking_pressed() -> void:
 	get_tree().change_scene_to_file(ScenePaths.MENUS.RANKING)

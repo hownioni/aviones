@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blomrxhd7dx1p"]
 
-[ext_resource type="Script" uid="uid://x5e1464fe3o7" path="res://fondo_coop.gd" id="1_fk48n"]
+[ext_resource type="Script" uid="uid://x5e1464fe3o7" path="res://scenes/coop/fondo_coop.gd" id="1_fk48n"]
 [ext_resource type="Texture2D" uid="uid://c8465tqeieoeu" path="res://assets/map/artistic-pixel_art-8_bit-minimalist-917322.jpeg" id="1_teb77"]
 [ext_resource type="PackedScene" uid="uid://de5paopbjhb00" path="res://coop.tscn" id="2_gr5xo"]
 [ext_resource type="FontFile" uid="uid://02xwp5g3wgo2" path="res://assets/fonts/Minecraft.ttf" id="3_q2lhh"]
