@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://drv3j4nslxmvq" path="res://scripts/components/health_component.gd" id="6_sguum"]
 [ext_resource type="Script" uid="uid://cbvsh7bm3aqxo" path="res://scripts/components/shooting_component.gd" id="7_jwv1m"]
 [ext_resource type="PackedScene" uid="uid://davbhc3hgpr10" path="res://scenes/bullet/bullet.tscn" id="8_phaeh"]
+[ext_resource type="Script" uid="uid://dhj1wgqym1oun" path="res://scripts/components/vfx_component.gd" id="9_yl2j2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vyb7"]
 radius = 7.0
@@ -17,7 +18,6 @@ collision_mask = 2
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2119783842]
-scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1953624821]
 position = Vector2(0, -3)
@@ -50,8 +50,9 @@ metadata/_custom_type_script = "uid://dkwb2cxak4wyf"
 [node name="HealthComponent" type="Node" parent="." unique_id=2007586259]
 unique_name_in_owner = true
 script = ExtResource("6_sguum")
-max_health = 5
-current_health = 5
+max_health = 1
+current_health = 1
+invincible_duration = 0.2
 metadata/_custom_type_script = "uid://drv3j4nslxmvq"
 
 [node name="ShootingComponent" type="Node" parent="." unique_id=1968862865]
@@ -59,3 +60,8 @@ unique_name_in_owner = true
 script = ExtResource("7_jwv1m")
 bullet_scene = ExtResource("8_phaeh")
 metadata/_custom_type_script = "uid://cbvsh7bm3aqxo"
+
+[node name="VfxComponent" type="Node" parent="." unique_id=238704675]
+unique_name_in_owner = true
+script = ExtResource("9_yl2j2")
+metadata/_custom_type_script = "uid://dhj1wgqym1oun"

@@ -1,14 +1,23 @@
 class_name ShootingComponent extends Node
 
 @export var bullet_scene: PackedScene
+@export var bullet_speed: float = 150
 var bullet_direction := Vector2.ZERO
 
 func shoot(body: Node2D, spawn_offset: Vector2 = Vector2.ZERO) -> void:
 	if bullet_scene == null:
 		return
 
-	var bullet: Node2D = bullet_scene.instantiate()
-	bullet.global_position = body.global_position + spawn_offset
-	bullet.direction = bullet_direction
-	bullet.shooter = body
-	body.get_parent().add_child(bullet)
+    var bullet: Node2D = bullet_scene.instantiate()
+    bullet.global_position = body.global_position + spawn_offset
+    bullet.direction = bullet_direction
+    bullet.shooter = body
+    bullet.speed = bullet_speed
+
+     # Set team based on shooter
+    if body is Player:
+        bullet.team = Team.Type.PLAYER
+    elif body is Enemy:
+        bullet.team = Team.Type.ENEMY
+
+    body.get_parent().add_child(bullet)

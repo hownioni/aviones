@@ -9,21 +9,28 @@ class_name Enemy extends Area2D
 @onready var movement_component: MovementComponent = %MovementComponent
 @onready var shooting_component: ShootingComponent = %ShootingComponent
 @onready var animation_component: AnimationComponent = %AnimationComponent
+@onready var hurt_component: HurtComponent = %HurtComponent
+@onready var health_component: HealthComponent = %HealthComponent
+@onready var vfx_component: VfxComponent = %VfxComponent
 
 var _wave_time: float = 0.0
-var _current_health: int
+var can_move := true
 
 func _ready():
 	if not stats:
 		_enable_debug_mode()
 		return
 
-	_current_health = stats.health
+    _setup_visuals()
+    _setup_collision()
 
-	_setup_visuals()
-	_setup_collision()
+    movement_component.speed = stats.speed
+    health_component.max_health = stats.health
+    health_component.current_health = stats.health
+    health_component.died.connect(_on_died)
+    health_component.damaged.connect(_on_damaged)
 
-	movement_component.speed = stats.speed
+    area_entered.connect(_on_area_entered)
 
 	# Setup shooting
 	if stats.shooting_type != EnemyStats.ShootingType.NONE:
@@ -31,15 +38,11 @@ func _ready():
 		shoot_timer.timeout.connect(_on_shoot_timer_timeout)
 		shoot_timer.start()
 
+func get_team() -> Team.Type:
+    return Team.Type.ENEMY
+
 func take_damage(amount: int) -> void:
-	_current_health -= amount
-
-	animation_component.animated_sprite.modulate = Color.RED
-	await get_tree().create_timer(0.1).timeout
-	animation_component.animated_sprite.modulate = Color.WHITE
-
-	if _current_health <= 0:
-		_die()
+    health_component.take_damage(amount)
 
 func _setup_visuals():
 	if stats.sprite_frames:
@@ -56,6 +59,9 @@ func _setup_visuals():
 	else:
 		animation_component.animated_sprite.visible = false
 		queue_redraw()
+
+func _on_area_entered(area: Area2D):
+    hurt_component.deal_damage(area)
 
 func _setup_collision():
 	# Priority 1: Use custom collision shape if provided
@@ -91,10 +97,13 @@ func _physics_process(delta: float):
 	if not stats:
 		return
 
-	# Movement only - shooting handled by timer
-	match stats.movement_type:
-		EnemyStats.MovementType.STRAIGHT:
-			movement_component.direction = Vector2.LEFT
+    if not can_move:
+        return
+
+    # Movement only - shooting handled by timer
+    match stats.movement_type:
+        EnemyStats.MovementType.STRAIGHT:
+            movement_component.direction = Vector2.LEFT
 
 		EnemyStats.MovementType.WAVE:
 			_wave_time += delta
@@ -134,13 +143,20 @@ func _shoot_burst():
 		shooting_component.bullet_direction = direction
 		shooting_component.shoot(self, stats.bullet_spawn_offset)
 
-func _die():
-	GameManager.add_score(stats.points_awarded)
-	GameManager.add_enemy_kill()
-	print(GameManager.current_score)
+func _on_died():
+    GameManager.add_score(stats.points_awarded)
+    GameManager.add_enemy_kill()
+    shoot_timer.stop()
+    collision_shape_2d.set_deferred("disabled", true)
+    set_physics_process(false)
 
-	shoot_timer.stop()
-	queue_free()
+    # Optional: play death animation or particle effect here
+    await get_tree().create_timer(0.2).timeout
+
+    queue_free()
+
+func _on_damaged(_new_hp: int, _max_hp: int):
+    vfx_component.flash()
 
 func _draw():
 	if not stats or stats.sprite_frames:

@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Sql="*uid://dgm3ceny8twqu"
 GameManager="*uid://cf24jh2dxvjyv"
+Sql="*uid://dgm3ceny8twqu"
 
 [display]
 

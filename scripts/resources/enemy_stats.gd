@@ -16,13 +16,13 @@ class_name EnemyStats extends Resource
 @export var bullet_direction: Vector2 = Vector2.LEFT
 @export var burst_count: int = 3
 @export var burst_spread: float = 60.0  # degrees total spread
+@export var bullet_spawn_offset: Vector2 = Vector2.ZERO
 
 @export_category("Visual")
 @export var sprite_frames: SpriteFrames
 @export var default_animation: String = "default"
 @export var sprite_scale: Vector2 = Vector2(1, 1)
 @export var sprite_offset: Vector2 = Vector2.ZERO
-@export var bullet_spawn_offset: Vector2 = Vector2.ZERO
 
 @export_category("Collision")
 @export var collision_radius: float = 8.0

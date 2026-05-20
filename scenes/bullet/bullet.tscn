@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://msq5t682onrk" path="res://scenes/bullet/bullet.gd" id="1_v7oki"]
 [ext_resource type="Script" uid="uid://dkwb2cxak4wyf" path="res://scripts/components/offscreen_component.gd" id="3_0vdx3"]
+[ext_resource type="Script" uid="uid://b2l8v08y0k2nl" path="res://scripts/components/hurt_component.gd" id="3_c6pnf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v8qja"]
 radius = 1.0
@@ -18,3 +19,8 @@ shape = SubResource("CircleShape2D_v8qja")
 unique_name_in_owner = true
 script = ExtResource("3_0vdx3")
 metadata/_custom_type_script = "uid://dkwb2cxak4wyf"
+
+[node name="HurtComponent" type="Node" parent="." unique_id=1103508492]
+unique_name_in_owner = true
+script = ExtResource("3_c6pnf")
+metadata/_custom_type_script = "uid://b2l8v08y0k2nl"
