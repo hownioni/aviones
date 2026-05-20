@@ -4,6 +4,9 @@ extends Area2D
 
 var direction := Vector2.LEFT
 
+#para saber quine disparo la balita
+var owner_player_id : int
+
 func _process(delta):
 
 	position += direction * speed * delta
@@ -21,3 +24,9 @@ func _draw():
 
 func _ready():
 	queue_redraw()
+	area_entered.connect(_on_area_entered)
+	
+func _on_area_entered(area):
+	if area is Enemy:
+		area.die(owner_player_id)
+		queue_free()

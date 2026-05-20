@@ -76,8 +76,9 @@ func _shoot_burst():
 		shooting_component.shoot(self)
 
 # Optional: Stop shooting when enemy dies
-func die():
+func die(player_id : int):
 	shoot_timer.stop()
+	GameManager.add_score(player_id,stats.score_value)
 	queue_free()
 
 func _draw():

@@ -11,6 +11,7 @@ class_name Player extends Area2D
 func _ready() -> void:
 	animated_sprite_2d.play("default")
 	input_component.player_id = player_id
+	GameManager.register_player(player_id)
 
 
 func _physics_process(delta: float) -> void:
