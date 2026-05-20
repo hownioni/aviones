@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dbvuvdvdqwpda"]
 
-[ext_resource type="Script" uid="uid://ctkse0hqmu47p" path="res://ranking/ranking.gd" id="1_cn5da"]
-[ext_resource type="Texture2D" uid="uid://c6uc5oxjedjlf" path="res://images/artistic-pixel_art-space-stars-872539.jpeg" id="1_qxfu3"]
-[ext_resource type="FontFile" uid="uid://02xwp5g3wgo2" path="res://fonts/Minecraft.ttf" id="3_x5gfj"]
-[ext_resource type="Theme" uid="uid://25m8yd7qpmam" path="res://Menu/button_theme.tres" id="4_amtgq"]
+[ext_resource type="Script" uid="uid://ctkse0hqmu47p" path="res://scenes/menus/ranking/ranking.gd" id="1_cn5da"]
+[ext_resource type="Texture2D" uid="uid://c6uc5oxjedjlf" path="res://assets/map/artistic-pixel_art-space-stars-872539.jpeg" id="1_qxfu3"]
+[ext_resource type="FontFile" uid="uid://02xwp5g3wgo2" path="res://assets/fonts/Minecraft.ttf" id="3_x5gfj"]
+[ext_resource type="Theme" uid="uid://25m8yd7qpmam" path="res://scenes/menus/main/button_theme.tres" id="4_amtgq"]
 
 [node name="ranking" type="Control" unique_id=162036454]
 layout_mode = 3

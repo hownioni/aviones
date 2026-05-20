@@ -6,13 +6,13 @@ extends HBoxContainer
 
 func _ready():
 
-	label_pos.custom_minimum_size.y = 6
-	label_name.custom_minimum_size.y = 6
-	label_score.custom_minimum_size.y = 6
-	
-	
+    label_pos.custom_minimum_size.y = 6
+    label_name.custom_minimum_size.y = 6
+    label_score.custom_minimum_size.y = 6
+
+
 func set_data(posicion, nombre, score):
 
-	label_pos.text = str(posicion)
-	label_name.text = str(nombre)
-	label_score.text = str(score)
+    label_pos.text = str(posicion)
+    label_name.text = str(nombre)
+    label_score.text = str(score)
