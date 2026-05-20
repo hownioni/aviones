@@ -14,142 +14,142 @@ var _wave_time: float = 0.0
 var _current_health: int
 
 func _ready():
-    if not stats:
-        _enable_debug_mode()
-        return
+	if not stats:
+		_enable_debug_mode()
+		return
 
-    _current_health = stats.health
+	_current_health = stats.health
 
-    _setup_visuals()
-    _setup_collision()
+	_setup_visuals()
+	_setup_collision()
 
-    movement_component.speed = stats.speed
+	movement_component.speed = stats.speed
 
-    # Setup shooting
-    if stats.shooting_type != EnemyStats.ShootingType.NONE:
-        shoot_timer.wait_time = stats.shoot_delay
-        shoot_timer.timeout.connect(_on_shoot_timer_timeout)
-        shoot_timer.start()
+	# Setup shooting
+	if stats.shooting_type != EnemyStats.ShootingType.NONE:
+		shoot_timer.wait_time = stats.shoot_delay
+		shoot_timer.timeout.connect(_on_shoot_timer_timeout)
+		shoot_timer.start()
 
 func take_damage(amount: int) -> void:
-    _current_health -= amount
+	_current_health -= amount
 
-    animation_component.animated_sprite.modulate = Color.RED
-    await get_tree().create_timer(0.1).timeout
-    animation_component.animated_sprite.modulate = Color.WHITE
+	animation_component.animated_sprite.modulate = Color.RED
+	await get_tree().create_timer(0.1).timeout
+	animation_component.animated_sprite.modulate = Color.WHITE
 
-    if _current_health <= 0:
-        _die()
+	if _current_health <= 0:
+		_die()
 
 func _setup_visuals():
-    if stats.sprite_frames:
-        animation_component.animated_sprite.sprite_frames = stats.sprite_frames
-        animation_component.animated_sprite.animation = stats.default_animation
-        animation_component.animated_sprite.scale = stats.sprite_scale
-        animation_component.animated_sprite.offset = stats.sprite_offset
+	if stats.sprite_frames:
+		animation_component.animated_sprite.sprite_frames = stats.sprite_frames
+		animation_component.animated_sprite.animation = stats.default_animation
+		animation_component.animated_sprite.scale = stats.sprite_scale
+		animation_component.animated_sprite.offset = stats.sprite_offset
 
-        # Play animation if it has multiple frames and speed > 0
-        var animation_speed := stats.sprite_frames.get_animation_speed(stats.default_animation)
-        if animation_speed > 0:
-            animation_component.animated_sprite.play()
-        animation_component.animated_sprite.visible = true
-    else:
-        animation_component.animated_sprite.visible = false
-        queue_redraw()
+		# Play animation if it has multiple frames and speed > 0
+		var animation_speed := stats.sprite_frames.get_animation_speed(stats.default_animation)
+		if animation_speed > 0:
+			animation_component.animated_sprite.play()
+		animation_component.animated_sprite.visible = true
+	else:
+		animation_component.animated_sprite.visible = false
+		queue_redraw()
 
 func _setup_collision():
-    # Priority 1: Use custom collision shape if provided
-    if stats.collision_shape:
-        collision_shape_2d.shape = stats.collision_shape
-        collision_shape_2d.rotation = stats.collision_rotation
-        return
+	# Priority 1: Use custom collision shape if provided
+	if stats.collision_shape:
+		collision_shape_2d.shape = stats.collision_shape
+		collision_shape_2d.rotation = stats.collision_rotation
+		return
 
-    # Priority 2: Use manual collision radius from stats
-    if stats.collision_radius > 0:
-        var circle_shape = CircleShape2D.new()
-        circle_shape.radius = stats.collision_radius
-        collision_shape_2d.shape = circle_shape
-        return
+	# Priority 2: Use manual collision radius from stats
+	if stats.collision_radius > 0:
+		var circle_shape = CircleShape2D.new()
+		circle_shape.radius = stats.collision_radius
+		collision_shape_2d.shape = circle_shape
+		return
 
-    # Priority 3: Calculate from sprite (fallback)
-    if stats.sprite_frames:
-        var first_frame = stats.sprite_frames.get_frame_texture(stats.default_animation, 0)
-        if first_frame:
-            var sprite_size = first_frame.get_size() * stats.sprite_scale
-            var radius = min(sprite_size.x, sprite_size.y) * 0.4
-            var circle_shape = CircleShape2D.new()
-            circle_shape.radius = radius
-            collision_shape_2d.shape = circle_shape
-            return
+	# Priority 3: Calculate from sprite (fallback)
+	if stats.sprite_frames:
+		var first_frame = stats.sprite_frames.get_frame_texture(stats.default_animation, 0)
+		if first_frame:
+			var sprite_size = first_frame.get_size() * stats.sprite_scale
+			var radius = min(sprite_size.x, sprite_size.y) * 0.4
+			var circle_shape = CircleShape2D.new()
+			circle_shape.radius = radius
+			collision_shape_2d.shape = circle_shape
+			return
 
-    # Priority 4: Ultra fallback
-    var circle_shape = CircleShape2D.new()
-    circle_shape.radius = 12.0
-    collision_shape_2d.shape = circle_shape
+	# Priority 4: Ultra fallback
+	var circle_shape = CircleShape2D.new()
+	circle_shape.radius = 12.0
+	collision_shape_2d.shape = circle_shape
 
 func _physics_process(delta: float):
-    if not stats:
-        return
+	if not stats:
+		return
 
-    # Movement only - shooting handled by timer
-    match stats.movement_type:
-        EnemyStats.MovementType.STRAIGHT:
-            movement_component.direction = Vector2.LEFT
+	# Movement only - shooting handled by timer
+	match stats.movement_type:
+		EnemyStats.MovementType.STRAIGHT:
+			movement_component.direction = Vector2.LEFT
 
-        EnemyStats.MovementType.WAVE:
-            _wave_time += delta
-            var wave_direction = Vector2.LEFT
-            wave_direction.y = sin(_wave_time * stats.wave_frequency)
-            movement_component.direction = wave_direction
+		EnemyStats.MovementType.WAVE:
+			_wave_time += delta
+			var wave_direction = Vector2.LEFT
+			wave_direction.y = sin(_wave_time * stats.wave_frequency)
+			movement_component.direction = wave_direction
 
-    movement_component.tick(delta)
+	movement_component.tick(delta)
 
-    # Clamp wave enemies
-    if stats.movement_type == EnemyStats.MovementType.WAVE:
-        var viewport = get_viewport_rect()
-        position.y = clamp(position.y, 20, viewport.size.y - 20)
+	# Clamp wave enemies
+	if stats.movement_type == EnemyStats.MovementType.WAVE:
+		var viewport = get_viewport_rect()
+		position.y = clamp(position.y, 20, viewport.size.y - 20)
 
 func _on_shoot_timer_timeout():
-    match stats.shooting_type:
-        EnemyStats.ShootingType.SINGLE_SHOT:
-            _shoot_single()
-        EnemyStats.ShootingType.BURST:
-            _shoot_burst()
+	match stats.shooting_type:
+		EnemyStats.ShootingType.SINGLE_SHOT:
+			_shoot_single()
+		EnemyStats.ShootingType.BURST:
+			_shoot_burst()
 
 func _shoot_single():
-    shooting_component.bullet_direction = stats.bullet_direction
-    shooting_component.shoot(self, stats.bullet_spawn_offset)
+	shooting_component.bullet_direction = stats.bullet_direction
+	shooting_component.shoot(self, stats.bullet_spawn_offset)
 
 func _shoot_burst():
-    if stats.burst_count <= 1:
-        _shoot_single()
-        return
+	if stats.burst_count <= 1:
+		_shoot_single()
+		return
 
-    var angle_step = stats.burst_spread / (stats.burst_count - 1)
-    var start_angle = -stats.burst_spread / 2
+	var angle_step = stats.burst_spread / (stats.burst_count - 1)
+	var start_angle = -stats.burst_spread / 2
 
-    for i in range(stats.burst_count):
-        var angle_deg = start_angle + (angle_step * i)
-        var direction = stats.bullet_direction.rotated(deg_to_rad(angle_deg))
-        shooting_component.bullet_direction = direction
-        shooting_component.shoot(self, stats.bullet_spawn_offset)
+	for i in range(stats.burst_count):
+		var angle_deg = start_angle + (angle_step * i)
+		var direction = stats.bullet_direction.rotated(deg_to_rad(angle_deg))
+		shooting_component.bullet_direction = direction
+		shooting_component.shoot(self, stats.bullet_spawn_offset)
 
 func _die():
-    GameManager.add_score(stats.points_awarded)
-    GameManager.add_enemy_kill()
-    print(GameManager.current_score)
+	GameManager.add_score(stats.points_awarded)
+	GameManager.add_enemy_kill()
+	print(GameManager.current_score)
 
-    shoot_timer.stop()
-    queue_free()
+	shoot_timer.stop()
+	queue_free()
 
 func _draw():
-    if not stats or stats.sprite_frames:
-        return  # Don't draw if we have a sprite
+	if not stats or stats.sprite_frames:
+		return  # Don't draw if we have a sprite
 
-    # Fallback drawing for debug
-    draw_circle(Vector2.ZERO, stats.collision_radius, Color.RED)
-    draw_circle(Vector2.ZERO, stats.collision_radius - 1, Color.DARK_RED)
+	# Fallback drawing for debug
+	draw_circle(Vector2.ZERO, stats.collision_radius, Color.RED)
+	draw_circle(Vector2.ZERO, stats.collision_radius - 1, Color.DARK_RED)
 
 func _enable_debug_mode():
-    stats = EnemyStats.new()
-    print("Warning: Enemy has no stats assigned - using defaults")
+	stats = EnemyStats.new()
+	print("Warning: Enemy has no stats assigned - using defaults")
