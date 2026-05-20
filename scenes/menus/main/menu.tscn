@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://c8ixks6irxc7k"]
 
-[ext_resource type="Script" uid="uid://dofo72pyk20m6" path="res://Menu/menu.gd" id="1_pbjm4"]
-[ext_resource type="Texture2D" uid="uid://c6uc5oxjedjlf" path="res://images/artistic-pixel_art-space-stars-872539.jpeg" id="2_svuvw"]
-[ext_resource type="Theme" uid="uid://25m8yd7qpmam" path="res://Menu/button_theme.tres" id="3_juveg"]
-[ext_resource type="FontFile" uid="uid://02xwp5g3wgo2" path="res://fonts/Minecraft.ttf" id="4_v6yed"]
+[ext_resource type="Script" uid="uid://dofo72pyk20m6" path="res://scenes/menus/main/menu.gd" id="1_pbjm4"]
+[ext_resource type="Texture2D" uid="uid://c6uc5oxjedjlf" path="res://assets/map/artistic-pixel_art-space-stars-872539.jpeg" id="2_svuvw"]
+[ext_resource type="Theme" uid="uid://25m8yd7qpmam" path="res://scenes/menus/main/button_theme.tres" id="3_juveg"]
+[ext_resource type="FontFile" uid="uid://02xwp5g3wgo2" path="res://assets/fonts/Minecraft.ttf" id="4_v6yed"]
 
 [node name="Menu" type="Control" unique_id=866391854]
 layout_mode = 3
