@@ -19,12 +19,12 @@ class_name EnemyStats extends Resource
 @export var show_weapon_indicators: bool = true
 
 enum MovementType {
-    STRAIGHT,
-    WAVE
+	STRAIGHT,
+	WAVE
 }
 
 enum ShootingType {
-    NONE,
-    SINGLE_SHOT,
-    BURST
+	NONE,
+	SINGLE_SHOT,
+	BURST
 }
