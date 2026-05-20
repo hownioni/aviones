@@ -3,36 +3,36 @@
 [ext_resource type="Script" uid="uid://dksuhfj06rm3i" path="res://scripts/resources/enemy_stats.gd" id="1_5m0op"]
 [ext_resource type="Texture2D" uid="uid://dcqil2hh8m7ci" path="res://assets/sprites/enemies/vaca_nave.png" id="2_phsnr"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xrvi4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5m0op"]
 atlas = ExtResource("2_phsnr")
-region = Rect2(2, 0, 16, 36)
+region = Rect2(2, 2, 16, 34)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_44u84"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_phsnr"]
 atlas = ExtResource("2_phsnr")
-region = Rect2(20, 0, 16, 36)
+region = Rect2(20, 2, 16, 34)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n5wse"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ek2lu"]
 atlas = ExtResource("2_phsnr")
-region = Rect2(38, 0, 16, 36)
+region = Rect2(38, 2, 16, 34)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xrdry"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncgy1"]
 atlas = ExtResource("2_phsnr")
-region = Rect2(56, 0, 16, 36)
+region = Rect2(56, 2, 16, 34)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3gwqr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xrvi4")
+"texture": SubResource("AtlasTexture_5m0op")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_44u84")
+"texture": SubResource("AtlasTexture_phsnr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n5wse")
+"texture": SubResource("AtlasTexture_ek2lu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xrdry")
+"texture": SubResource("AtlasTexture_ncgy1")
 }],
 "loop": true,
 "name": &"default",
@@ -44,4 +44,5 @@ script = ExtResource("1_5m0op")
 speed = 80.0
 shooting_type = 1
 sprite_frames = SubResource("SpriteFrames_3gwqr")
+bullet_spawn_offset = Vector2(0, 14)
 metadata/_custom_type_script = "uid://dksuhfj06rm3i"

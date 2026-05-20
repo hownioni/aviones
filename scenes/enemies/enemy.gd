@@ -45,20 +45,26 @@ func _setup_visuals():
         queue_redraw()
 
 func _setup_collision():
+    # If manual collision radius is set and not default, use it
+    if stats.collision_radius > 0 and stats.collision_radius != 8.0:  # 8 is default
+        var circle_shape = CircleShape2D.new()
+        circle_shape.radius = stats.collision_radius
+        collision_shape_2d.shape = circle_shape
+        return
+
+    # Otherwise try to calculate from sprite
     if stats.collision_shape:
-        # Use custom shape from resource
         collision_shape_2d.shape = stats.collision_shape
+        collision_shape_2d.rotation = stats.collision_rotation
     elif stats.sprite_frames:
-        # Auto-calculate from first frame of animation
         var first_frame = stats.sprite_frames.get_frame_texture(stats.default_animation, 0)
         if first_frame:
             var sprite_size = first_frame.get_size() * stats.sprite_scale
-            var radius = min(sprite_size.x, sprite_size.y)
+            var radius = min(sprite_size.x, sprite_size.y) * 0.5  # Half size
             var circle_shape = CircleShape2D.new()
             circle_shape.radius = radius
             collision_shape_2d.shape = circle_shape
     else:
-        # Fallback to radius from stats
         var circle_shape = CircleShape2D.new()
         circle_shape.radius = stats.collision_radius
         collision_shape_2d.shape = circle_shape
@@ -98,7 +104,7 @@ func _on_shoot_timer_timeout():
 
 func _shoot_single():
     shooting_component.bullet_direction = stats.bullet_direction
-    shooting_component.shoot(self)
+    shooting_component.shoot(self, stats.bullet_spawn_offset)
 
 func _shoot_burst():
     if stats.burst_count <= 1:
@@ -112,7 +118,7 @@ func _shoot_burst():
         var angle_deg = start_angle + (angle_step * i)
         var direction = stats.bullet_direction.rotated(deg_to_rad(angle_deg))
         shooting_component.bullet_direction = direction
-        shooting_component.shoot(self)
+        shooting_component.shoot(self, stats.bullet_spawn_offset)
 
 # Optional: Stop shooting when enemy dies
 func die():

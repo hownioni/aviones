@@ -26,5 +26,3 @@ metadata/_custom_type_script = "uid://cbvsh7bm3aqxo"
 [node name="ShootTimer" type="Timer" parent="." unique_id=413915602]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1556949439]
-
-[node name="Muzzle" type="Marker2D" parent="." unique_id=1442653086]
