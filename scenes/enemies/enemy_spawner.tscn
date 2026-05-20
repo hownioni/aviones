@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://ba0aicj7f7cvf"]
 
 [ext_resource type="Script" uid="uid://dsye3p0mokef8" path="res://scenes/enemies/enemy_spawner.gd" id="1_mjbfh"]
-[ext_resource type="PackedScene" uid="uid://dtawatj5o3m7d" path="res://scenes/enemies/enemy_basic.tscn" id="2_531ly"]
-[ext_resource type="PackedScene" uid="uid://dupqbg6eec4nu" path="res://scenes/enemies/enemy_shot.tscn" id="3_gdiwb"]
-[ext_resource type="PackedScene" uid="uid://0615o6hanqox" path="res://scenes/enemies/enemy_wave.tscn" id="4_lgub2"]
+[ext_resource type="PackedScene" uid="uid://dtawatj5o3m7d" path="res://scenes/enemies/enemy.tscn" id="2_531ly"]
+[ext_resource type="Script" uid="uid://dksuhfj06rm3i" path="res://scripts/resources/enemy_stats.gd" id="3_63aup"]
+[ext_resource type="Resource" uid="uid://dvn0bqwcmg01v" path="res://resources/enemies/wave_enemy.tres" id="4_gnd13"]
+[ext_resource type="Resource" uid="uid://c15cwwu320m1e" path="res://resources/enemies/basic_enemy.tres" id="5_sslve"]
+[ext_resource type="Resource" uid="uid://birabjgydatx4" path="res://resources/enemies/shooter_enemy.tres" id="6_akt16"]
 
 [node name="EnemySpawner" type="Node2D" unique_id=1146066596]
 script = ExtResource("1_mjbfh")
-enemy_scenes = Array[PackedScene]([ExtResource("2_531ly"), ExtResource("3_gdiwb"), ExtResource("4_lgub2")])
+enemy_scene = ExtResource("2_531ly")
+enemy_types = Array[ExtResource("3_63aup")]([ExtResource("6_akt16"), ExtResource("5_sslve"), ExtResource("4_gnd13")])
