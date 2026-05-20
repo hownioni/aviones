@@ -41,6 +41,7 @@ metadata/_custom_type_script = "uid://devp2xaf52bep"
 [node name="OffscreenComponent" type="Node" parent="." unique_id=2141730915]
 unique_name_in_owner = true
 script = ExtResource("6_nb6gf")
+margin = 200
 metadata/_custom_type_script = "uid://dkwb2cxak4wyf"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=76224141]

@@ -17,7 +17,6 @@ collision_mask = 2
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2119783842]
-scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1953624821]
 position = Vector2(0, -3)

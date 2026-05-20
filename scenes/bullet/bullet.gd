@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var speed := 300.0
-@export var is_player_bullet := false
+@export var team: Team.Type = Team.Type.PLAYER
 
 @onready var offscreen_component: OffscreenComponent = %OffscreenComponent
 @onready var hurt_component: HurtComponent = %HurtComponent
@@ -29,22 +29,20 @@ func _handle_collision(collider: Node2D):
 
 func _can_damage(collider: Node2D) -> bool:
     # Enemy bullet vs Player
-    if not is_player_bullet and collider is Player:
-        return true
+    if collider.has_method("get_team"):
+        return collider.get_team() != team
 
-    # Player bullet vs Enemy
-    if is_player_bullet and collider is Enemy:
+    # Fallback to old system
+    if team == Team.Type.PLAYER and collider is Enemy:
         return true
-
-    # Optional: Destructible objects
-    if collider.has_method("take_damage"):
+    if team == Team.Type.ENEMY and collider is Player:
         return true
 
     return false
 
 func _draw():
     # Color bullets differently based on owner
-    if is_player_bullet:
+    if team == Team.Type.PLAYER:
         draw_circle(Vector2.ZERO, 2, Color.GREEN)
     else:
         draw_circle(Vector2.ZERO, 2, Color.RED)

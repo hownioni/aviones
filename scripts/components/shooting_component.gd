@@ -11,4 +11,11 @@ func shoot(body: Node2D, spawn_offset: Vector2 = Vector2.ZERO) -> void:
     bullet.global_position = body.global_position + spawn_offset
     bullet.direction = bullet_direction
     bullet.shooter = body
+
+     # Set team based on shooter
+    if body is Player:
+        bullet.team = Team.Type.PLAYER
+    elif body is Enemy:
+        bullet.team = Team.Type.ENEMY
+
     body.get_parent().add_child(bullet)

@@ -34,6 +34,9 @@ func _ready():
         shoot_timer.timeout.connect(_on_shoot_timer_timeout)
         shoot_timer.start()
 
+func get_team() -> Team.Type:
+    return Team.Type.ENEMY
+
 func take_damage(amount: int) -> void:
     _current_health -= amount
 

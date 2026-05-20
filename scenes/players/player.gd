@@ -14,6 +14,9 @@ func _ready() -> void:
     health_component.died.connect(_on_player_died)
     shooting_component.bullet_direction = Vector2.RIGHT
 
+func get_team() -> Team.Type:
+    return Team.Type.PLAYER
+
 func _physics_process(delta: float) -> void:
     # Read input
     input_component.update()
