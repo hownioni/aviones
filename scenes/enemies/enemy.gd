@@ -9,6 +9,7 @@ class_name Enemy extends Area2D
 @onready var movement_component: MovementComponent = %MovementComponent
 @onready var shooting_component: ShootingComponent = %ShootingComponent
 @onready var animation_component: AnimationComponent = %AnimationComponent
+@onready var hurt_component: HurtComponent = %HurtComponent
 
 var _wave_time: float = 0.0
 var _current_health: int
@@ -24,6 +25,8 @@ func _ready():
     _setup_collision()
 
     movement_component.speed = stats.speed
+
+    area_entered.connect(_on_area_entered)
 
     # Setup shooting
     if stats.shooting_type != EnemyStats.ShootingType.NONE:
@@ -56,6 +59,9 @@ func _setup_visuals():
     else:
         animation_component.animated_sprite.visible = false
         queue_redraw()
+
+func _on_area_entered(area: Area2D):
+    hurt_component.deal_damage(area)
 
 func _setup_collision():
     # Priority 1: Use custom collision shape if provided

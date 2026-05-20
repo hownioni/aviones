@@ -50,8 +50,9 @@ metadata/_custom_type_script = "uid://dkwb2cxak4wyf"
 [node name="HealthComponent" type="Node" parent="." unique_id=2007586259]
 unique_name_in_owner = true
 script = ExtResource("6_sguum")
-max_health = 5
-current_health = 5
+max_health = 1
+current_health = 1
+invincible_duration = 0.2
 metadata/_custom_type_script = "uid://drv3j4nslxmvq"
 
 [node name="ShootingComponent" type="Node" parent="." unique_id=1968862865]

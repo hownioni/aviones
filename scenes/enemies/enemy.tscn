@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://devp2xaf52bep" path="res://scripts/components/animation_component.gd" id="5_lu5c6"]
 [ext_resource type="Script" uid="uid://dkwb2cxak4wyf" path="res://scripts/components/offscreen_component.gd" id="6_nb6gf"]
 [ext_resource type="Script" uid="uid://drv3j4nslxmvq" path="res://scripts/components/health_component.gd" id="7_jt03m"]
+[ext_resource type="Script" uid="uid://b2l8v08y0k2nl" path="res://scripts/components/hurt_component.gd" id="8_n7575"]
 
 [node name="Enemy" type="Area2D" unique_id=2023772731]
 collision_layer = 2
@@ -46,3 +47,8 @@ metadata/_custom_type_script = "uid://dkwb2cxak4wyf"
 unique_name_in_owner = true
 script = ExtResource("7_jt03m")
 metadata/_custom_type_script = "uid://drv3j4nslxmvq"
+
+[node name="HurtComponent" type="Node" parent="." unique_id=1132381214]
+unique_name_in_owner = true
+script = ExtResource("8_n7575")
+metadata/_custom_type_script = "uid://b2l8v08y0k2nl"
