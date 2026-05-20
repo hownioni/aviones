@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://dvn0bqwcmg01v"]
+
+[ext_resource type="Script" uid="uid://dksuhfj06rm3i" path="res://scripts/resources/enemy_stats.gd" id="1_6ey8f"]
+[ext_resource type="Texture2D" uid="uid://bc62asplq3qe1" path="res://assets/sprites/enemies/vaca_rotatoria.png" id="2_om8ct"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sp4ii"]
+radius = 8.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_orc8u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_om8ct")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_6ey8f")
+speed = 70.0
+movement_type = 1
+shooting_type = 2
+burst_count = 5
+sprite_frames = SubResource("SpriteFrames_orc8u")
+collision_shape = SubResource("CapsuleShape2D_sp4ii")
+collision_rotation = 1.5707963267948966
+metadata/_custom_type_script = "uid://dksuhfj06rm3i"

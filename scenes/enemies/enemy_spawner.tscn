@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://dsye3p0mokef8" path="res://scenes/enemies/enemy_spawner.gd" id="1_mjbfh"]
 [ext_resource type="PackedScene" path="res://scenes/enemies/enemy.tscn" id="2_63aup"]
 [ext_resource type="Script" uid="uid://dksuhfj06rm3i" path="res://scripts/resources/enemy_stats.gd" id="3_63aup"]
-[ext_resource type="Resource" uid="uid://dvn0bqwcmg01v" path="res://resources/enemies/wave_enemy.tres" id="4_gnd13"]
-[ext_resource type="Resource" uid="uid://c15cwwu320m1e" path="res://resources/enemies/basic_enemy.tres" id="5_sslve"]
-[ext_resource type="Resource" uid="uid://birabjgydatx4" path="res://resources/enemies/shooter_enemy.tres" id="6_akt16"]
+[ext_resource type="Resource" uid="uid://dvn0bqwcmg01v" path="res://resources/enemies/cow_burst.tres" id="4_gnd13"]
+[ext_resource type="Resource" uid="uid://c15cwwu320m1e" path="res://resources/enemies/cow_basic.tres" id="5_sslve"]
+[ext_resource type="Resource" uid="uid://birabjgydatx4" path="res://resources/enemies/cow_shooter.tres" id="6_akt16"]
 
 [node name="EnemySpawner" type="Node2D" unique_id=1146066596]
 script = ExtResource("1_mjbfh")
