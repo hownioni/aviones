@@ -10,4 +10,5 @@ wave_amplitude = 20.0
 shooting_type = 2
 burst_count = 5
 color = Color(0.6, 0.2, 0.8, 1)
+score_value = 150
 metadata/_custom_type_script = "uid://dksuhfj06rm3i"

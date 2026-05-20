@@ -9,16 +9,16 @@ class_name Player extends Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    animated_sprite_2d.play("default")
-    input_component.player_id = player_id
+	animated_sprite_2d.play("default")
+	input_component.player_id = player_id
 
 
 func _physics_process(delta: float) -> void:
-    # Read input
-    input_component.update()
+	# Read input
+	input_component.update()
 
-    movement_component.direction = input_component.move_dir
-    movement_component.tick(delta)
+	movement_component.direction = input_component.move_dir
+	movement_component.tick(delta)
 
 
-    global_position = global_position.round()
+	global_position = global_position.round()

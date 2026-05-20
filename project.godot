@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 sql="*uid://dgm3ceny8twqu"
+GameManager="*uid://bombgkru8e7ql"
 
 [display]
 

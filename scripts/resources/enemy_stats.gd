@@ -18,6 +18,10 @@ class_name EnemyStats extends Resource
 @export var radius: float = 5.0
 @export var show_weapon_indicators: bool = true
 
+@export_category("Gameplay")
+@export var score_value: int = 100
+@export var life: int = 1
+
 enum MovementType {
 	STRAIGHT,
 	WAVE
