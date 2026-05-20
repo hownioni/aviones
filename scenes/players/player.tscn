@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://0ms2ehxyoubh"]
 
 [ext_resource type="Script" uid="uid://b5rdscm1bjm4i" path="res://scenes/players/player.gd" id="1_g2els"]
-[ext_resource type="Script" uid="uid://c2olfdlju5fci" path="res://scripts/input_component.gd" id="2_ldeu4"]
-[ext_resource type="Script" uid="uid://dw00bvm4mv3pi" path="res://scripts/movement_component.gd" id="3_kc87p"]
+[ext_resource type="Script" uid="uid://c2olfdlju5fci" path="res://scripts/components/input_component.gd" id="2_ldeu4"]
+[ext_resource type="Script" uid="uid://dw00bvm4mv3pi" path="res://scripts/components/movement_component.gd" id="3_kc87p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vyb7"]
 radius = 7.0
@@ -22,9 +22,8 @@ unique_name_in_owner = true
 script = ExtResource("2_ldeu4")
 metadata/_custom_type_script = "uid://c2olfdlju5fci"
 
-[node name="MovementComponent" type="Node" parent="." unique_id=118216092 node_paths=PackedStringArray("body", "sprite")]
+[node name="MovementComponent" type="Node" parent="." unique_id=118216092 node_paths=PackedStringArray("body")]
 unique_name_in_owner = true
 script = ExtResource("3_kc87p")
 body = NodePath("..")
-sprite = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://dw00bvm4mv3pi"
