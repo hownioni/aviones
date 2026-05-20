@@ -9,8 +9,8 @@ extends Node2D
 var difficulty := "easy"
 
 func _ready():
-	randomize()
-	start_spawn_loop()
+    randomize()
+    start_spawn_loop()
 
 func start_spawn_loop():
     while true:
@@ -37,24 +37,24 @@ func spawn_single_enemy():
     if not enemy_scene or enemy_types.is_empty():
         return
 
-	var enemy: Enemy = enemy_scene.instantiate()
-	enemy.stats = enemy_types.pick_random()
+    var enemy: Enemy = enemy_scene.instantiate()
+    enemy.stats = enemy_types.pick_random()
 
-	# Position at right edge of screen
-	var screen_size = get_viewport_rect().size
-	enemy.position = Vector2(
-		screen_size.x + 20,
-		randf_range(40, screen_size.y - 40)
-	)
+    # Position at right edge of screen
+    var screen_size = get_viewport_rect().size
+    enemy.position = Vector2(
+        screen_size.x + 20,
+        randf_range(40, screen_size.y - 40)
+    )
 
-	add_child(enemy)
+    add_child(enemy)
 
 func get_spawn_time():
-	match difficulty:
-		"easy":
-			return randf_range(1.5, 2.5)
-		"normal":
-			return randf_range(0.8, 1.5)
-		"hard":
-			return randf_range(0.3, 0.8)
-	return 1.0
+    match difficulty:
+        "easy":
+            return randf_range(1.5, 2.5)
+        "normal":
+            return randf_range(0.8, 1.5)
+        "hard":
+            return randf_range(0.3, 0.8)
+    return 1.0

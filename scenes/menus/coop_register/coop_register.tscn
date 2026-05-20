@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://k4vkcflm3qcw"]
+
+[ext_resource type="Script" uid="uid://cjxvrfkxlnyuk" path="res://scenes/menus/coop_register/coop_register.gd" id="1_8qeu0"]
+[ext_resource type="Texture2D" uid="uid://c8465tqeieoeu" path="res://assets/map/artistic-pixel_art-8_bit-minimalist-917322.jpeg" id="2_urrrm"]
+[ext_resource type="FontFile" uid="uid://02xwp5g3wgo2" path="res://assets/fonts/Minecraft.ttf" id="3_nlkod"]
+[ext_resource type="Theme" uid="uid://25m8yd7qpmam" path="res://scenes/menus/main/button_theme.tres" id="4_c7jrl"]
+
+[node name="CoopRegister" type="Control" unique_id=735582930]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8qeu0")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1382704509]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_urrrm")
+expand_mode = 1
+flip_h = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1104682334]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -24.0
+offset_right = 38.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextInputs" type="HBoxContainer" parent="VBoxContainer" unique_id=1387444498]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="TextInput1" type="VBoxContainer" parent="VBoxContainer/TextInputs" unique_id=1875305835]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Label1" type="Label" parent="VBoxContainer/TextInputs/TextInput1" unique_id=861472394]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_nlkod")
+theme_override_font_sizes/font_size = 8
+text = "Player1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameInput1" type="LineEdit" parent="VBoxContainer/TextInputs/TextInput1" unique_id=1885892518]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_nlkod")
+theme_override_font_sizes/font_size = 8
+max_length = 15
+
+[node name="TextInput2" type="VBoxContainer" parent="VBoxContainer/TextInputs" unique_id=1751179837]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/TextInputs/TextInput2" unique_id=539548558]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_nlkod")
+theme_override_font_sizes/font_size = 8
+text = "Player2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameInput2" type="LineEdit" parent="VBoxContainer/TextInputs/TextInput2" unique_id=1535671092]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_nlkod")
+theme_override_font_sizes/font_size = 8
+max_length = 15
+
+[node name="NavButtons" type="HBoxContainer" parent="VBoxContainer" unique_id=251979151]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="Continuar" type="Button" parent="VBoxContainer/NavButtons" unique_id=449054122]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_c7jrl")
+theme_override_fonts/font = ExtResource("3_nlkod")
+theme_override_font_sizes/font_size = 8
+text = "Continuar"
+
+[node name="Salir" type="Button" parent="VBoxContainer/NavButtons" unique_id=1474816702]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_c7jrl")
+theme_override_fonts/font = ExtResource("3_nlkod")
+theme_override_font_sizes/font_size = 8
+text = "Salir"
+
+[connection signal="pressed" from="VBoxContainer/NavButtons/Continuar" to="." method="_on_continuar_pressed"]
+[connection signal="pressed" from="VBoxContainer/NavButtons/Salir" to="." method="_on_salir_pressed"]
