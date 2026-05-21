@@ -27,6 +27,7 @@ func _ready():
     _connect_player_signals()
 
     _update_ui_for_mode()
+    _init_player_health_display()
     _start_game()
 
 func _spawn_players():
@@ -70,16 +71,17 @@ func _update_ui_for_mode():
     var is_versus = (mode == GameModeManager.Mode.VERSUS)
 
     # Show/hide player labels based on mode
-    player_0_name_label.visible = is_multiplayer
+    player_0_name_label.visible = true  # Always show P0 health/name
     player_1_name_label.visible = is_multiplayer
     player_0_score_label.visible = is_versus
     player_1_score_label.visible = is_versus
     score_label.visible = (mode == GameModeManager.Mode.SINGLEPLAYER or mode == GameModeManager.Mode.COOP)
 
-    # Set player names in UI
-    if is_multiplayer:
-        player_0_name_label.text = GameModeManager.get_player_name(0)
-        player_1_name_label.text = GameModeManager.get_player_name(1)
+func _init_player_health_display() -> void:
+    for player in _players:
+        var hp = player.health_component.current_health
+        var name_label = player_0_name_label if player.player_id == 0 else player_1_name_label
+        name_label.text = "%s: %d" %  [GameModeManager.get_player_name(player.player_id), hp]
 
 func _start_game():
     GameStateManager.start_game()
@@ -112,16 +114,15 @@ func _on_score_changed(new_score: int):
 
 func _on_player_score_updated(player_id: int, new_score: int):
     if player_id == 0:
-        player_0_score_label.text = "%s: %d" % [GameModeManager.get_player_name(0), new_score]
+        player_0_score_label.text = "P1 Score: %d" % new_score
     else:
-        player_1_score_label.text = "%s: %d" % [GameModeManager.get_player_name(1), new_score]
+        player_1_score_label.text = "P2 Score: %d" % new_score
 
-func _on_player_health_changed(current_health: int, player_id: int):
-    # You need to add a health_changed signal to HealthComponent first
+func _on_player_health_changed(current_health: int, _max_health: int, player_id: int):
     if player_id == 0:
-        player_0_name_label.text = GameModeManager.get_player_name(0) + ": " + str(current_health)
+        player_0_name_label.text = "%s: %d" %  [GameModeManager.get_player_name(0), current_health]
     else:
-        player_1_name_label.text = GameModeManager.get_player_name(1) + ": " + str(current_health)
+        player_1_name_label.text = "%s: %d" %  [GameModeManager.get_player_name(1), current_health]
 
 func _on_wave_started(wave: int):
     wave_label.text = "Wave: %d" % wave

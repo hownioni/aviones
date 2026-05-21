@@ -23,12 +23,10 @@ func _on_continuar_pressed() -> void:
         print("Faltan nombres de jugadores")
         return
 
-    # Store names in GameModeManager
+    # Reset scores first, then set names (reset_game() overwrites names with defaults)
+    GameModeManager.reset_game()
     GameModeManager.set_player_name(0, p1_name)
     GameModeManager.set_player_name(1, p2_name)
-
-    # Reset scores
-    GameModeManager.reset_game()
 
     get_tree().change_scene_to_file(ScenePaths.PACKED.GAME_WORLD)
 
