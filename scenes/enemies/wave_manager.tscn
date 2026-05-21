@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ba0aicj7f7cvf"]
+
+[ext_resource type="Script" uid="uid://dsye3p0mokef8" path="res://scenes/enemies/wave_manager.gd" id="1_uah3x"]
+[ext_resource type="PackedScene" uid="uid://bg6ny06w6w2ts" path="res://scenes/enemies/enemy.tscn" id="2_pvp5e"]
+[ext_resource type="Script" uid="uid://dksuhfj06rm3i" path="res://scripts/resources/enemy_stats.gd" id="3_n7e8v"]
+[ext_resource type="Resource" uid="uid://c15cwwu320m1e" path="res://resources/enemies/cow_basic.tres" id="4_2xq16"]
+[ext_resource type="Resource" uid="uid://dvn0bqwcmg01v" path="res://resources/enemies/cow_burst.tres" id="5_bvlxh"]
+[ext_resource type="Resource" uid="uid://birabjgydatx4" path="res://resources/enemies/cow_shooter.tres" id="6_6110u"]
+[ext_resource type="PackedScene" uid="uid://d22u0lys2i662" path="res://scenes/enemies/formation.tscn" id="7_e8ovq"]
+[ext_resource type="Script" uid="uid://b5xwkvdghyyvy" path="res://scripts/resources/formation_stats.gd" id="8_gvj0b"]
+[ext_resource type="Resource" uid="uid://b6jw71176hpgl" path="res://resources/enemies/formations/circle.tres" id="9_7wbbn"]
+
+[node name="WaveManager" type="Node2D" unique_id=1146066596]
+script = ExtResource("1_uah3x")
+enemy_scene = ExtResource("2_pvp5e")
+formation_scene = ExtResource("7_e8ovq")
+enemy_types = Array[ExtResource("3_n7e8v")]([ExtResource("4_2xq16"), ExtResource("5_bvlxh"), ExtResource("6_6110u")])
+formation_types = Array[ExtResource("8_gvj0b")]([ExtResource("9_7wbbn")])

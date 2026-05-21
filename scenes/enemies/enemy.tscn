@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://buu1tyk5xn316" path="res://scenes/enemies/enemy.gd" id="1_fcftc"]
 [ext_resource type="Script" uid="uid://dw00bvm4mv3pi" path="res://scripts/components/movement_component.gd" id="2_38ino"]
 [ext_resource type="Script" uid="uid://cbvsh7bm3aqxo" path="res://scripts/components/shooting_component.gd" id="3_38ino"]
-[ext_resource type="PackedScene" uid="uid://davbhc3hgpr10" path="res://scenes/bullet/bullet.tscn" id="4_fcftc"]
 [ext_resource type="Script" uid="uid://devp2xaf52bep" path="res://scripts/components/animation_component.gd" id="5_lu5c6"]
-[ext_resource type="Script" uid="uid://dkwb2cxak4wyf" path="res://scripts/components/offscreen_component.gd" id="6_nb6gf"]
 [ext_resource type="Script" uid="uid://drv3j4nslxmvq" path="res://scripts/components/health_component.gd" id="7_jt03m"]
 [ext_resource type="Script" uid="uid://b2l8v08y0k2nl" path="res://scripts/components/hurt_component.gd" id="8_n7575"]
 [ext_resource type="Script" uid="uid://dhj1wgqym1oun" path="res://scripts/components/vfx_component.gd" id="9_qch6t"]
@@ -27,23 +25,11 @@ script = ExtResource("2_38ino")
 body = NodePath("..")
 metadata/_custom_type_script = "uid://dw00bvm4mv3pi"
 
-[node name="ShootingComponent" type="Node" parent="." unique_id=274771224]
-unique_name_in_owner = true
-script = ExtResource("3_38ino")
-bullet_scene = ExtResource("4_fcftc")
-metadata/_custom_type_script = "uid://cbvsh7bm3aqxo"
-
 [node name="AnimationComponent" type="Node" parent="." unique_id=2119753817 node_paths=PackedStringArray("animated_sprite")]
 unique_name_in_owner = true
 script = ExtResource("5_lu5c6")
 animated_sprite = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://devp2xaf52bep"
-
-[node name="OffscreenComponent" type="Node" parent="." unique_id=2141730915]
-unique_name_in_owner = true
-script = ExtResource("6_nb6gf")
-margin = 200
-metadata/_custom_type_script = "uid://dkwb2cxak4wyf"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=76224141]
 unique_name_in_owner = true
@@ -61,3 +47,12 @@ unique_name_in_owner = true
 script = ExtResource("9_qch6t")
 target = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://dhj1wgqym1oun"
+
+[node name="ShootingComponent" type="Node" parent="." unique_id=1845853604]
+unique_name_in_owner = true
+script = ExtResource("3_38ino")
+metadata/_custom_type_script = "uid://cbvsh7bm3aqxo"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=57540449]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

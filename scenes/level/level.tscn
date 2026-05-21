@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://x5e1464fe3o7" path="res://scenes/level/level.gd" id="1_qkmgm"]
 [ext_resource type="FontFile" uid="uid://02xwp5g3wgo2" path="res://assets/fonts/Minecraft.ttf" id="2_hnne4"]
 [ext_resource type="Texture2D" uid="uid://c8465tqeieoeu" path="res://assets/map/artistic-pixel_art-8_bit-minimalist-917322.jpeg" id="3_vpf64"]
-[ext_resource type="PackedScene" uid="uid://ba0aicj7f7cvf" path="res://scenes/enemies/enemy_spawner.tscn" id="4_wcngd"]
+[ext_resource type="PackedScene" uid="uid://ba0aicj7f7cvf" path="res://scenes/enemies/wave_manager.tscn" id="4_wcngd"]
 [ext_resource type="PackedScene" uid="uid://bkyecx6s1a0ev" path="res://scenes/players/player_0.tscn" id="5_vpf64"]
 [ext_resource type="PackedScene" uid="uid://glcph4yu5l2d" path="res://scenes/players/player_1.tscn" id="6_wcngd"]
 
@@ -44,18 +44,38 @@ theme_override_fonts/font = ExtResource("2_hnne4")
 theme_override_font_sizes/font_size = 8
 text = "anton: "
 
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/GUI" unique_id=830126729]
+[node name="WaveClearedLabel" type="Label" parent="CanvasLayer/GUI" unique_id=759531036]
 unique_name_in_owner = true
+layout_mode = 0
+offset_left = 111.0
+offset_top = 74.0
+offset_right = 151.0
+offset_bottom = 97.0
+theme_override_fonts/font = ExtResource("2_hnne4")
+
+[node name="CornerCounters" type="HBoxContainer" parent="CanvasLayer/GUI" unique_id=1520583129]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -64.0
+offset_left = -130.0
 offset_top = -12.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_constants/separation = 46
+
+[node name="WaveLabel" type="Label" parent="CanvasLayer/GUI/CornerCounters" unique_id=1960785151]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_hnne4")
+theme_override_font_sizes/font_size = 8
+text = "wave"
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/GUI/CornerCounters" unique_id=830126729]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_fonts/font = ExtResource("2_hnne4")
 theme_override_font_sizes/font_size = 8
 text = "score"
@@ -72,7 +92,8 @@ grow_vertical = 2
 texture = ExtResource("3_vpf64")
 expand_mode = 1
 
-[node name="EnemySpawner" parent="." unique_id=1146066596 instance=ExtResource("4_wcngd")]
+[node name="WaveManager" parent="." unique_id=1146066596 instance=ExtResource("4_wcngd")]
+unique_name_in_owner = true
 
 [node name="Player0" parent="." unique_id=1080092681 instance=ExtResource("5_vpf64")]
 position = Vector2(30, 30)

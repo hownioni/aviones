@@ -46,3 +46,7 @@ func _draw():
         draw_circle(Vector2.ZERO, 2, Color.GREEN)
     else:
         draw_circle(Vector2.ZERO, 2, Color.RED)
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+    queue_free()

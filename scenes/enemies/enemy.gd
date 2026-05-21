@@ -144,15 +144,18 @@ func _shoot_burst():
         shooting_component.shoot(self, stats.bullet_spawn_offset)
 
 func _on_died():
-    GameManager.add_score(stats.points_awarded)
-    GameManager.add_enemy_kill()
+    ScoreManager.add_points(stats.points_awarded)
+    #Add enemy killed
+    var wave_manager = get_tree().get_first_node_in_group("wave_manager")
+    if wave_manager:
+        wave_manager.on_enemy_killed()
+
     shoot_timer.stop()
+
     collision_shape_2d.set_deferred("disabled", true)
     set_physics_process(false)
 
-    # Optional: play death animation or particle effect here
     await get_tree().create_timer(0.2).timeout
-
     queue_free()
 
 func _on_damaged(_new_hp: int, _max_hp: int):
@@ -169,3 +172,7 @@ func _draw():
 func _enable_debug_mode():
     stats = EnemyStats.new()
     print("Warning: Enemy has no stats assigned - using defaults")
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+    queue_free()
