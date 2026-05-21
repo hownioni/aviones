@@ -2,6 +2,18 @@ extends Control
 
 @onready var name_input_1: LineEdit = %NameInput1
 @onready var name_input_2: LineEdit = %NameInput2
+@onready var mode_label: Label = %ModeLabel
+@onready var continue_btn: Button = %Continuar
+
+var _pending_mode: GameModeManager.Mode
+
+func _ready():
+    _pending_mode = GameModeManager.current_mode
+
+    if _pending_mode == GameModeManager.Mode.COOP:
+        mode_label.text = "Co-op Mode - Work together!"
+    else:
+        mode_label.text = "Versus Mode - Compete for highest score!"
 
 func _on_continuar_pressed() -> void:
     var p1_name : String = name_input_1.text.strip_edges()
@@ -10,6 +22,13 @@ func _on_continuar_pressed() -> void:
     if p1_name.is_empty() or p2_name.is_empty():
         print("Faltan nombres de jugadores")
         return
+
+    # Store names in GameModeManager
+    GameModeManager.set_player_name(0, p1_name)
+    GameModeManager.set_player_name(1, p2_name)
+
+    # Reset scores
+    GameModeManager.reset_game()
 
     get_tree().change_scene_to_file(ScenePaths.PACKED.GAME_WORLD)
 

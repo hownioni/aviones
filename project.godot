@@ -17,8 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*uid://cf24jh2dxvjyv"
 Sql="*uid://dgm3ceny8twqu"
+ScoreManager="*uid://bwsrk6531ydu8"
+GameStateManager="*uid://d1b8dfgp5oadm"
+GameModeManager="*uid://bxfm2mhhxli77"
 
 [display]
 

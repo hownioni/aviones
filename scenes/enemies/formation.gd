@@ -1,5 +1,7 @@
 class_name Formation extends Node2D
 
+signal member_died()  # Add this signal
+
 @export var formation_stats: FormationStats
 
 enum FormationShape {
@@ -109,6 +111,8 @@ func _process(delta):
                 enemy.rotation = -rotation
 
 func _on_member_died():
+    member_died.emit()
+
     members = members.filter(func(m): return is_instance_valid(m) and not m.is_queued_for_deletion())
     if members.is_empty():
         queue_free()

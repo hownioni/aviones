@@ -39,18 +39,23 @@ offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_juveg")
-theme_override_constants/separation = 12
+theme_override_constants/separation = 8
 
-[node name="solo_game" type="Button" parent="VBoxContainer" unique_id=1123529901]
+[node name="SoloGame" type="Button" parent="VBoxContainer" unique_id=1123529901]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_v6yed")
 theme_override_font_sizes/font_size = 10
-text = "1 jugador"
+text = "Singleplayer"
 
-[node name="Duo_game" type="Button" parent="VBoxContainer" unique_id=695698887]
+[node name="DuoGame" type="Button" parent="VBoxContainer" unique_id=695698887]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
-text = "2 jugadores"
+text = "Co-op"
+
+[node name="VersusGame" type="Button" parent="VBoxContainer" unique_id=1381691386]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Versus"
 
 [node name="ranking" type="Button" parent="VBoxContainer" unique_id=1805144231]
 layout_mode = 2
@@ -62,7 +67,8 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "Salir"
 
-[connection signal="pressed" from="VBoxContainer/solo_game" to="." method="_on_solo_game_pressed"]
-[connection signal="pressed" from="VBoxContainer/Duo_game" to="." method="_on_duo_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/SoloGame" to="." method="_on_solo_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/DuoGame" to="." method="_on_duo_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/VersusGame" to="." method="_on_versus_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/ranking" to="." method="_on_ranking_pressed"]
 [connection signal="pressed" from="VBoxContainer/salir" to="." method="_on_salir_pressed"]
