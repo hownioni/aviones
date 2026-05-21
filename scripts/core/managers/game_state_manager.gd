@@ -10,7 +10,7 @@ enum GameState {
 }
 
 signal game_state_changed(old_state: GameState, new_state: GameState)
-signal game_ended(victory: bool)  # true = victory, false = defeat
+signal game_ended(victory: bool)
 
 var current_state: GameState = GameState.MENU:
     set(value):
@@ -49,11 +49,13 @@ func game_over(victory: bool = false):
     game_ended.emit(victory)
     get_tree().paused = true
 
-func register_player_died():
-    _players_alive -= 1
-
-    if _players_alive <= 0:
-        game_over(false)  # Defeat
+func register_player_died(player_id: int = -1):
+    if GameModeManager.current_mode == GameModeManager.Mode.VERSUS:
+        game_over(true)
+    else:
+        _players_alive -= 1
+        if _players_alive <= 0:
+            game_over(false)
 
 func register_player_spawned():
     _players_alive += 1

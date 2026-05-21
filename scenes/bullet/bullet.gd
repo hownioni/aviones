@@ -3,7 +3,6 @@ extends Area2D
 @export var speed := 300.0
 @export var team: Team.Type = Team.Type.PLAYER
 
-@onready var offscreen_component: OffscreenComponent = %OffscreenComponent
 @onready var hurt_component: HurtComponent = %HurtComponent
 
 var direction := Vector2.LEFT
@@ -24,7 +23,7 @@ func _handle_collision(collider: Node2D):
         return
 
     if _can_damage(collider):
-        hurt_component.deal_damage(collider)
+        hurt_component.deal_damage(collider, shooter)
         queue_free()
 
 func _can_damage(collider: Node2D) -> bool:

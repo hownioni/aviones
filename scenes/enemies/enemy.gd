@@ -41,7 +41,7 @@ func _ready():
 func get_team() -> Team.Type:
     return Team.Type.ENEMY
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, _attacker: Node2D = null) -> void:
     health_component.take_damage(amount)
 
 func _setup_visuals():
@@ -143,8 +143,8 @@ func _shoot_burst():
         shooting_component.bullet_direction = direction
         shooting_component.shoot(self, stats.bullet_spawn_offset)
 
-func _on_died():
-    ScoreManager.add_points(stats.points_awarded)
+func _on_died(attacker: Node2D):
+    GameModeManager.on_enemy_killed(attacker, stats.points_awarded)
     #Add enemy killed
     var wave_manager = get_tree().get_first_node_in_group("wave_manager")
     if wave_manager:
@@ -158,7 +158,7 @@ func _on_died():
     await get_tree().create_timer(0.2).timeout
     queue_free()
 
-func _on_damaged(_new_hp: int, _max_hp: int):
+func _on_damaged(_new_hp: int, _max_hp: int, _attacker: Node2D):
     vfx_component.flash()
 
 func _draw():

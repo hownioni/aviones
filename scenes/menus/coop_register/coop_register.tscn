@@ -85,6 +85,13 @@ theme_override_fonts/font = ExtResource("3_nlkod")
 theme_override_font_sizes/font_size = 8
 max_length = 15
 
+[node name="ModeLabel" type="Label" parent="VBoxContainer" unique_id=2031219564]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_nlkod")
+text = "Modo"
+horizontal_alignment = 1
+
 [node name="NavButtons" type="HBoxContainer" parent="VBoxContainer" unique_id=251979151]
 layout_mode = 2
 size_flags_horizontal = 4

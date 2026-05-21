@@ -1,0 +1,4 @@
+<context>
+I have this Godot 4.x project that I'm making for a university assignment. It's a local co-op horizontal scroller shoot 'em up where you control a pair of aliens fighting against bizarre cows. The game has 3 modes: Singleplayer, Coop and Versus. Singleplayer is self-explanatory; in Coop the score is shared between players and they both work together to get the highest score; in Versus each player has a separate score and they fight each other to get the highest score.
+I've used this project as an opportunity to learn about composition and I've quite grown to like it. 
+</context>

@@ -4,11 +4,25 @@
 [ext_resource type="FontFile" uid="uid://02xwp5g3wgo2" path="res://assets/fonts/Minecraft.ttf" id="2_hnne4"]
 [ext_resource type="Texture2D" uid="uid://c8465tqeieoeu" path="res://assets/map/artistic-pixel_art-8_bit-minimalist-917322.jpeg" id="3_vpf64"]
 [ext_resource type="PackedScene" uid="uid://ba0aicj7f7cvf" path="res://scenes/enemies/wave_manager.tscn" id="4_wcngd"]
-[ext_resource type="PackedScene" uid="uid://bkyecx6s1a0ev" path="res://scenes/players/player_0.tscn" id="5_vpf64"]
-[ext_resource type="PackedScene" uid="uid://glcph4yu5l2d" path="res://scenes/players/player_1.tscn" id="6_wcngd"]
+[ext_resource type="PackedScene" uid="uid://ss04g3ndr6jo" path="res://scenes/menus/overlay/pause/pause.tscn" id="7_wcngd"]
 
-[node name="Level" type="Node" unique_id=1886588656]
+[node name="Level" type="Node2D" unique_id=208967854]
 script = ExtResource("1_qkmgm")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1328952398]
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground" unique_id=1612150880]
+z_index = -100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_vpf64")
+expand_mode = 1
+
+[node name="WaveManager" parent="." unique_id=1146066596 instance=ExtResource("4_wcngd")]
+unique_name_in_owner = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=160168110]
 
@@ -22,7 +36,7 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 3
 
-[node name="LabelPlayer0" type="Label" parent="CanvasLayer/GUI" unique_id=1911431323]
+[node name="Player0NameLabel" type="Label" parent="CanvasLayer/GUI" unique_id=1911431323]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 50.0
@@ -33,7 +47,7 @@ theme_override_fonts/font = ExtResource("2_hnne4")
 theme_override_font_sizes/font_size = 8
 text = "fredy: "
 
-[node name="LabelPlayer1" type="Label" parent="CanvasLayer/GUI" unique_id=108314691]
+[node name="Player1NameLabel" type="Label" parent="CanvasLayer/GUI" unique_id=108314691]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 197.0
@@ -53,51 +67,48 @@ offset_right = 151.0
 offset_bottom = 97.0
 theme_override_fonts/font = ExtResource("2_hnne4")
 
-[node name="CornerCounters" type="HBoxContainer" parent="CanvasLayer/GUI" unique_id=1520583129]
+[node name="Counters" type="VBoxContainer" parent="CanvasLayer/GUI" unique_id=1351672524]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -130.0
-offset_top = -12.0
+offset_left = -137.0
+offset_top = -28.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_constants/separation = 46
 
-[node name="WaveLabel" type="Label" parent="CanvasLayer/GUI/CornerCounters" unique_id=1960785151]
+[node name="WaveLabel" type="Label" parent="CanvasLayer/GUI/Counters" unique_id=1960785151]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_hnne4")
 theme_override_font_sizes/font_size = 8
 text = "wave"
 
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/GUI/CornerCounters" unique_id=830126729]
+[node name="Scores" type="HBoxContainer" parent="CanvasLayer/GUI/Counters" unique_id=1520583129]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Player0ScoreLabel" type="Label" parent="CanvasLayer/GUI/Counters/Scores" unique_id=830126729]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_hnne4")
 theme_override_font_sizes/font_size = 8
-text = "score"
+text = "p1: 0"
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1328952398]
-
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground" unique_id=1612150880]
-z_index = -100
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_vpf64")
-expand_mode = 1
-
-[node name="WaveManager" parent="." unique_id=1146066596 instance=ExtResource("4_wcngd")]
+[node name="Player1ScoreLabel" type="Label" parent="CanvasLayer/GUI/Counters/Scores" unique_id=774692978]
 unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_hnne4")
+theme_override_font_sizes/font_size = 8
+text = "p2: 0"
 
-[node name="Player0" parent="." unique_id=1080092681 instance=ExtResource("5_vpf64")]
-position = Vector2(30, 30)
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/GUI/Counters/Scores" unique_id=720888966]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_hnne4")
+theme_override_font_sizes/font_size = 8
+text = "score: 0"
 
-[node name="Player1" parent="." unique_id=973879318 instance=ExtResource("6_wcngd")]
-position = Vector2(30, 150)
-player_id = 1
+[node name="pause" parent="." unique_id=641668078 instance=ExtResource("7_wcngd")]
