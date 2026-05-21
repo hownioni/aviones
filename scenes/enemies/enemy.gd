@@ -41,8 +41,8 @@ func _ready():
 func get_team() -> Team.Type:
     return Team.Type.ENEMY
 
-func take_damage(amount: int, _attacker: Node2D = null) -> void:
-    health_component.take_damage(amount)
+func take_damage(amount: int, attacker: Node2D = null) -> void:
+    health_component.take_damage(amount, attacker)
 
 func _setup_visuals():
     if stats.sprite_frames:
