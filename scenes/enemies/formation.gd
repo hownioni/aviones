@@ -110,7 +110,7 @@ func _process(delta):
             if is_instance_valid(enemy):
                 enemy.rotation = -rotation
 
-func _on_member_died():
+func _on_member_died(_attacker: Node2D = null):
     member_died.emit()
 
     members = members.filter(func(m): return is_instance_valid(m) and not m.is_queued_for_deletion())

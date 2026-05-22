@@ -14,6 +14,10 @@ extends Node2D
 var _players: Array[Player] = []
 
 func _ready():
+    # Reset scores for the new game session
+    ScoreManager.reset_score()
+    GameModeManager.reset_scores()
+
     _spawn_players()
 
     # Connect UI

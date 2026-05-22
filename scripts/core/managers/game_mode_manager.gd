@@ -13,11 +13,12 @@ signal score_updated(player_id: int, new_score: int)
 func _ready():
     reset_game()
 
-func reset_game():
-    player_scores.clear()
-    # Initialize scores for both possible players
+func reset_scores():
     player_scores[0] = 0
     player_scores[1] = 0
+
+func reset_game():
+    reset_scores()
 
     player_names.clear()
     # Set default names

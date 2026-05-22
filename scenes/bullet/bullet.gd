@@ -19,11 +19,12 @@ func _on_area_entered(area: Area2D):
     _handle_collision(area)
 
 func _handle_collision(collider: Node2D):
-    if collider == shooter:
+    if is_instance_valid(shooter) and collider == shooter:
         return
 
     if _can_damage(collider):
-        hurt_component.deal_damage(collider, shooter)
+        var attacker: Node2D = shooter if is_instance_valid(shooter) else null
+        hurt_component.deal_damage(collider, attacker)
         queue_free()
 
 func _can_damage(collider: Node2D) -> bool:
